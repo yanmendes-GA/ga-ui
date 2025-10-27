@@ -13,7 +13,6 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -22,7 +21,12 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "declaration": true,             
+    "emitDeclarationOnly": true,  
+    "declarationDir": "dist",     
+    "rootDir": "src"
   },
   "include": ["src"]
 }

@@ -9,6 +9,7 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true, // Gera um único 'index.d.ts'
+      tsconfigPath: './tsconfig.app.json', // Caminho para o tsconfig específico
     }),
   ],
   build: {
