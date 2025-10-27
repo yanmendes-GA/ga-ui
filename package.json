@@ -57,7 +57,8 @@
     "react-dom": "^18.3.1",
     "storybook": "^8.2.6",
     "typescript": "^5.2.2",
-    "vite": "^5.3.4"
+    "vite": "^5.3.4",
+    "vite-plugin-dts": "^4.4.2"
   },
   "dependencies": {}
 }
