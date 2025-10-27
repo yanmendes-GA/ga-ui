@@ -1,2 +1,45 @@
 @import "https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css";
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+
+    /* Brand Colors & Varitions*/
+    --primary: 31 77% 47%;
+    --primary-400: 31 69% 58%;
+    --primary-300: 31 69% 68%;
+    --primary-200: 31 68% 79%;
+    --primary-100: 32 67% 89%;
+    --dark: 210 33% 9%;
+    --dark-500: 212 18% 17%;
+    --dark-400: 208 9% 27%;
+    --dark-300: 210 4% 45%;
+    --dark-200: 210 3% 64%;
+    --dark-100: 220 3% 82%;
+
+    /* Functional Colors */
+    --success: 130 77% 47%;
+    --success-dark: 134 35% 17%;
+
+    --error: 0 69% 58%;
+    --error-dark: 0 29% 18%;
+
+    --warning: 60 69% 68%;
+    --warning-dark: 60 34% 17%;
+
+    --info: 223 68% 79%;
+    --info-dark: 222 37% 19%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary-400)
+    );
+  }
+
+  .light {
+    /* light theme */
+  }
+}

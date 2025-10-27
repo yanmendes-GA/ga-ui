@@ -58,7 +58,7 @@ export const ExtraLarge: Story = {
 export const WithCustomFallback: Story = {
   args: {
     alt: "Custom User",
-    fallback: "CU",
+    fallback: "FB",
     size: "md",
   },
 }

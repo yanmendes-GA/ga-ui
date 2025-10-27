@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { cn } from "../../../utils/cn"
 import type { AvatarProps } from "./AvatarTypes"
 
 const sizeClasses = {
@@ -17,7 +18,7 @@ export const Avatar = ({
   src,
   alt,
   size = "md",
-  variant = "default",
+  variant = "primary",
   fallback,
   className = "",
 }: AvatarProps) => {
@@ -41,7 +42,12 @@ export const Avatar = ({
 
   return (
     <div
-      className={`hover:shadow-elegant relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-primary-100 transition-all duration-300 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={cn(
+        "hover:shadow-elegant bg-primary text-primary-100 relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold transition-all duration-300",
+        sizeClasses[size],
+        variantClasses[variant],
+        className,
+      )}
     >
       {shouldShowFallback ? (
         <span>{displayFallback}</span>

@@ -9,10 +9,6 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    size: {
-      control: "select",
-      options: ["sm", "md", "lg", "xl"],
-    },
     name: {
       control: "text",
     },
@@ -28,7 +24,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     name: "user",
-    size: "md",
     color: "primary",
   },
 }
@@ -36,7 +31,6 @@ export const Default: Story = {
 export const Small: Story = {
   args: {
     name: "user",
-    size: "sm",
     color: "primary",
   },
 }
@@ -44,7 +38,6 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     name: "user",
-    size: "lg",
     color: "primary",
   },
 }
@@ -52,15 +45,13 @@ export const Large: Story = {
 export const ExtraLarge: Story = {
   args: {
     name: "user",
-    size: "xl",
     color: "primary",
   },
 }
 
 export const CustomIcon: Story = {
-    args: {
-      name: "settings",
-      size: "md",
-      color: "secondary",
-    },
-  }
+  args: {
+    name: "settings",
+    color: "secondary",
+  },
+}
