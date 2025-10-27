@@ -1,0 +1,53 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+  # Roda quando você der push na branch 'master'
+  push:
+    branches: ["master"] # IMPORTANTE: Verifique se sua branch é 'master' ou 'main'
+  
+  # Permite rodar manualmente pela aba Actions
+  workflow_dispatch:
+
+# Permissões para o GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite apenas um deploy concorrente
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Use a versão do Node que você usa
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Storybook
+        run: npm run build-storybook # Isso gera a pasta 'storybook-static'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./storybook-static # Pasta que o 'build-storybook' gera
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
