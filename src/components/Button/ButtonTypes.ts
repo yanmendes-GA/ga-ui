@@ -1,5 +1,5 @@
 export interface ButtonProps {
   label: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "info";
   onClick?: () => void;
 }
