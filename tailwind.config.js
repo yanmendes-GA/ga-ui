@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.stories.{js,ts,jsx,tsx}",
+    "./src/**/*.mdx",
+  ],
   theme: {
     container: {
       center: true,
@@ -15,40 +19,40 @@ export default {
         foreground: "hsl(var(--foreground))",
 
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          400: "hsl(var(--primary-400))",
-          300: "hsl(var(--primary-300))",
-          200: "hsl(var(--primary-200))",
-          100: "hsl(var(--primary-100))",
+          DEFAULT: "hsl(31 77% 47%)",
+          400: "hsl(31 69% 58%)",
+          300: "hsl(31 69% 68%)",
+          200: "hsl(31 68% 79%)",
+          100: "hsl(32 67% 89%)",
         },
 
         dark: {
-          DEFAULT: "hsl(var(--dark))",
-          500: "hsl(var(--dark-500))",
-          400: "hsl(var(--dark-400))",
-          300: "hsl(var(--dark-300))",
-          200: "hsl(var(--dark-200))",
-          100: "hsl(var(--dark-100))",
+          DEFAULT: "hsl(210 33% 9%)",
+          500: "hsl(212 18% 17%)",
+          400: "hsl(208 9% 27%)",
+          300: "hsl(210 4% 45%)",
+          200: "hsl(210 3% 64%)",
+          100: "hsl(220 3% 82%)",
         },
 
         success: {
-          DEFAULT: "hsl(var(--success))",
-          dark: "hsl(var(--success-dark))",
+          DEFAULT: "hsl(130 77% 47%)",
+          dark: "hsl(134 35% 17%)",
         },
 
         error: {
-          DEFAULT: "hsl(var(--error))",
-          dark: "hsl(var(--error-dark))",
+          DEFAULT: "hsl(0 69% 58%)",
+          dark: "hsl(0 29% 18%)",
         },
 
         warning: {
-          DEFAULT: "hsl(var(--warning))",
-          dark: "hsl(var(--warning-dark))",
+          DEFAULT: "hsl(60 69% 68%)",
+          dark: "hsl(60 34% 17%)",
         },
 
         info: {
-          DEFAULT: "hsl(var(--info))",
-          dark: "hsl(var(--info-dark))",
+          DEFAULT: "hsl(223 68% 79%)",
+          dark: "hsl(222 37% 19%)",
         },
       },
 

@@ -3,12 +3,7 @@ import { mergeConfig } from "vite"
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: [
-    "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-a11y",
-    "@storybook/addon-vitest",
-  ],
+  addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
   framework: {
     name: "@storybook/react-vite",
     options: {},
@@ -20,7 +15,7 @@ const config: StorybookConfig = {
     return mergeConfig(viteConfig, {
       plugins: [
         // Adiciona o plugin do Tailwind para Vite à configuração
-        tailwindcss(),
+        tailwindcss({ optimize: true }),
       ],
     })
   },
