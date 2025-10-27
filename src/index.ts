@@ -2,4 +2,4 @@
 import "./index.css";
 
 // Exporte seus componentes
-export * from "./components/Button";
+export { Button } from "./components/Button/Button";

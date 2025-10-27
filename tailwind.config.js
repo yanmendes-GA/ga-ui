@@ -3,7 +3,7 @@
 export default {
   content: [
     './index.html',
-    "./src/**/*.{js,ts,jsx,tsx}", // Escaneia todos os componentes da sua lib
+    "./src/**/*.{js,ts,jsx,tsx}",
     './stories/**/*.{js,jsx,ts,tsx}',
     './.storybook/**/*.{js,jsx,ts,tsx}',
   ],
