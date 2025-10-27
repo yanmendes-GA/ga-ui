@@ -51,6 +51,7 @@
     "@storybook/react": "^8.2.6",
     "@storybook/react-vite": "^8.2.6",
     "@storybook/test": "^8.2.6",
+    "@types/node": "^24.9.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
@@ -66,5 +67,9 @@
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "path": "^0.12.7",
+    "vite-plugin-dts": "^4.5.4"
+  }
 }
