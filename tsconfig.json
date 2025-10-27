@@ -1,31 +1,26 @@
 {
   "compilerOptions": {
-    /* Opções Básicas do TypeScript */
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "strict": true,
 
-    /* Opções do Bundler (Vite) */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "isolatedModules": true, // Adicionado para segurança
+    "isolatedModules": true,
 
-    /* Opções do React */
     "jsx": "react-jsx",
 
-    /* 👇 A PARTE MAIS IMPORTANTE (GERAÇÃO DE TIPOS) 👇 */
-    "declaration": true,            // 1. Gera arquivos .d.ts
-    "emitDeclarationOnly": true,  // 2. Gera APENAS .d.ts (Vite cuida do JS)
-    "declarationDir": "./dist",   // 3. Onde salvar os tipos
-    "noEmit": false,                // 4. ESSENCIAL: Permite que o TS gere arquivos
-    "rootDir": "./src"              // 5. Informa onde está o código-fonte
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist",
+    "noEmit": false,
+    "rootDir": "./src"
   },
-  
-  /* 👇 ONDE O TSC DEVE LER OS ARQUIVOS 👇 */
+
   "include": ["src"],
   "exclude": [
     "node_modules",

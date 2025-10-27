@@ -1,17 +1,17 @@
-import { useState } from "react";
-import type { AvatarProps } from "./AvatarTypes";
+import { useState } from "react"
+import type { AvatarProps } from "./AvatarTypes"
 
 const sizeClasses = {
   sm: "h-[40px] w-[40px] text-[16px]",
   md: "h-[50px] w-[50px] text-[20px]",
   lg: "h-[80px] w-[80px] text-[32px]",
   xl: "h-[150px] w-[150px] text-[48px]",
-};
+}
 
 const variantClasses = {
   default: "bg-dark-500 border border-primary",
   primary: "bg-primary",
-};
+}
 
 export const Avatar = ({
   src,
@@ -21,23 +21,23 @@ export const Avatar = ({
   fallback,
   className = "",
 }: AvatarProps) => {
-  const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = useState(false)
 
   function handleImageError(): void {
-    setImageError(true);
+    setImageError(true)
   }
 
   function getInitials(name: string): string {
     return name
       .split(" ")
-      .map((word) => word[0])
+      .map(word => word[0])
       .join("")
       .toUpperCase()
-      .slice(0, 2);
+      .slice(0, 2)
   }
 
-  const shouldShowFallback = !src || imageError;
-  const displayFallback = fallback || getInitials(alt);
+  const shouldShowFallback = !src || imageError
+  const displayFallback = fallback || getInitials(alt)
 
   return (
     <div
@@ -54,5 +54,5 @@ export const Avatar = ({
         />
       )}
     </div>
-  );
+  )
 }

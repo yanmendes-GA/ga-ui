@@ -1,8 +1,8 @@
 export interface AvatarProps {
-  src?: string;
-  alt: string;
-  size?: "sm" | "md" | "lg" | "xl";
-  fallback?: string;
-  className?: string;
-  variant?: "default" | "primary";
+  src?: string
+  alt: string
+  size?: "sm" | "md" | "lg" | "xl"
+  fallback?: string
+  className?: string
+  variant?: "default" | "primary"
 }

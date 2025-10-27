@@ -4,7 +4,7 @@ on:
   # Roda quando você der push na branch 'master'
   push:
     branches: ["master"] # IMPORTANTE: Verifique se sua branch é 'master' ou 'main'
-  
+
   # Permite rodar manualmente pela aba Actions
   workflow_dispatch:
 

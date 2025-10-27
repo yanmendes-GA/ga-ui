@@ -1,11 +1,11 @@
-import type { IconProps } from "./IconTypes";
+import type { IconProps } from "./IconTypes"
 
 const iconSizes = {
   sm: "12px",
   md: "16px",
   lg: "20px",
   xl: "80px",
-};
+}
 
 export const Icon = ({ name, color, size = "sm" }: IconProps) => {
   return (
@@ -13,5 +13,5 @@ export const Icon = ({ name, color, size = "sm" }: IconProps) => {
       className={`fi fi-rs-${name} flex items-center justify-center text-[${iconSizes[size]}]`}
       style={{ color: `hsl(var(--${color}))` }}
     />
-  );
+  )
 }

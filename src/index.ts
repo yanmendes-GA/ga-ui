@@ -1,5 +1,3 @@
-// Importe e exporte seu CSS (para quem não usa Tailwind)
-import "./index.css";
+import "./index.css"
 
-// Exporte seus componentes
-export * from "./components";
+export * from "./components"
