@@ -1,13 +1,14 @@
 {
   "name": "@yanmendes-GA/ga-ui",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "private": false,
   "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "files": [
-    "dist"
+    "dist",
+    "tailwind.config.ts"
   ],
   "main": "./dist/ga-ui.umd.js",
   "module": "./dist/ga-ui.es.js",
