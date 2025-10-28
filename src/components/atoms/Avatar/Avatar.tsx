@@ -43,7 +43,7 @@ export const Avatar = ({
   return (
     <div
       className={cn(
-        "hover:shadow-elegant text-primary-100 relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold transition-all duration-300",
+        "hover:shadow-elegant relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-primary-100 transition-all duration-300",
         sizeClasses[size],
         variantClasses[variant],
         className,
