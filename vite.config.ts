@@ -17,6 +17,7 @@ export default defineConfig({
       "@/organisms": resolve(__dirname, "./src/components/organisms"),
       "@/templates": resolve(__dirname, "./src/components/templates"),
       "@/utils": resolve(__dirname, "./src/utils"),
+      "@/assets": resolve(__dirname, "./src/assets"),
     },
   },
   build: {
