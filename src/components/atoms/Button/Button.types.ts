@@ -9,5 +9,4 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   iconOnly?: boolean
   disabled?: boolean
-  onClick?: () => void
 }

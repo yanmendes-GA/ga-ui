@@ -6,19 +6,19 @@ type TextStyleProps = Pick<TextProps, "variant">
 
 // Mapeamento atualizado para USAR OS TOKENS DO CONFIG
 const variantStyles = {
-  h1: "text-h1 font-extrabold leading-h1",
-  h2: "text-h2 font-extrabold leading-h2",
-  h3: "text-h3 font-bold leading-h3",
-  h4: "text-h4 font-bold leading-h4",
-  h5: "text-h5 font-bold leading-h5",
-  h6: "text-h6 font-bold leading-h6",
-  body: "text-body font-normal leading-body",
-  button: "text-button font-bold leading-button",
-  label: "text-label font-bold leading-label",
-  small: "text-small font-normal leading-small",
-  caption: "text-caption font-medium leading-caption",
+  h1: "text-[5.050rem] font-extrabold leading-h1",
+  h2: "text-[3.850rem] font-extrabold leading-h2",
+  h3: "text-[2.950rem] font-bold leading-h3",
+  h4: "text-[2.250rem] font-bold leading-h4",
+  h5: "text-[1.700rem] font-bold leading-h5",
+  h6: "text-[1.300rem] font-bold leading-h6",
+  body: "text-[1.000rem] font-normal leading-body",
+  button: "text-[0.900rem] font-bold leading-button",
+  label: "text-[0.750rem] font-bold leading-label",
+  small: "text-[0.750rem] font-normal leading-small",
+  caption: "text-[0.600rem] font-medium leading-caption italic",
 }
 
 export const getTextStyles = ({ variant = "body" }: TextStyleProps) => {
-  return cn("text-primary", variantStyles[variant])
+  return cn("text-dark-100", variantStyles[variant])
 }

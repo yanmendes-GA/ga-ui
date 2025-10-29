@@ -1,6 +1,6 @@
 import type { AvatarProps } from "./Avatar.types"
 import { getAvatarStyles } from "./Avatar.styles"
-import useAvatar from "./AvatarHook"
+import useAvatar from "./Avatar.hook"
 
 export const Avatar = ({
   src,

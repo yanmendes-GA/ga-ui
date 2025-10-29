@@ -1,4 +1,3 @@
-// src/atoms/Text/Text.stories.tsx
 import type { Meta, StoryObj } from "@storybook/react"
 import { Text } from "./Text"
 import type { TextVariant } from "./Text.types"
