@@ -18,7 +18,16 @@
     "emitDeclarationOnly": true,
     "declarationDir": "./dist",
     "noEmit": false,
-    "rootDir": "./src"
+    "rootDir": "./src",
+
+    "baseUrl": ".",
+    "paths": {
+      "@/atoms/*": ["src/components/atoms/*"],
+      "@/molecules/*": ["src/components/molecules/*"],
+      "@/organisms/*": ["src/components/organisms/*"],
+      "@/templates/*": ["src/components/templates/*"],
+      "@/utils/*": ["src/utils/*"]
+    }
   },
 
   "include": ["src"],

@@ -10,6 +10,15 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  resolve: {
+    alias: {
+      "@/atoms": resolve(__dirname, "./src/components/atoms"),
+      "@/molecules": resolve(__dirname, "./src/components/molecules"),
+      "@/organisms": resolve(__dirname, "./src/components/organisms"),
+      "@/templates": resolve(__dirname, "./src/components/templates"),
+      "@/utils": resolve(__dirname, "./src/utils"),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
