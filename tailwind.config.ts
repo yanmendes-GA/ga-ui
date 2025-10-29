@@ -66,6 +66,20 @@ export default {
         sans: ["Montserrat", "sans-serif"],
       },
 
+      fontSize: {
+        h1: "5.050rem",
+        h2: "3.850rem",
+        h3: "2.950rem",
+        h4: "2.250rem",
+        h5: "1.700rem",
+        h6: "1.300rem",
+        body: "1.000rem",
+        button: "0.900rem",
+        label: "0.750rem",
+        small: "0.750rem",
+        caption: "0.600rem",
+      },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
