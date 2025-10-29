@@ -1,5 +1,5 @@
-import type { StorybookConfig } from "@storybook/react-vite";
-import { mergeConfig } from "vite";
+import type { StorybookConfig } from "@storybook/react-vite"
+import { mergeConfig } from "vite"
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -19,8 +19,8 @@ const config: StorybookConfig = {
         postcss: "./postcss.config.js", // garante que o Tailwind seja processado
       },
       assetsInclude: ["/sb-preview/runtime.js"],
-    });
+    })
   },
-};
+}
 
-export default config;
+export default config

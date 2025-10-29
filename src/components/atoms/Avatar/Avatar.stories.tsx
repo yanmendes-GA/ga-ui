@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Avatar } from "./Avatar"
-import GALogo from "@/assets/images/ga-logo.png"
+import Logo from "@/assets/images/logo_ga.png"
 
 const meta = {
   title: "Atoms/Avatar",
@@ -30,7 +30,7 @@ export const Default: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: GALogo,
+    src: Logo,
     alt: "Grupo Acelerador Logo",
     size: "lg",
   },
