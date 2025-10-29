@@ -1,4 +1,4 @@
-import type { IconProps } from "./IconTypes"
+import type { IconProps } from "./Icon.types"
 
 export const Icon = ({ name, color }: IconProps) => {
   return (

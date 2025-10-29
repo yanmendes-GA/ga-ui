@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { cn } from "../../../utils/cn"
-import type { AvatarProps } from "./AvatarTypes"
+import type { AvatarProps } from "./Avatar.types"
 
 const sizeClasses = {
   sm: "h-[40px] w-[40px] text-[16px]",
