@@ -58,6 +58,10 @@ export default {
         "gradient-primary": "var(--gradient-primary)",
       },
 
+      boxShadow: {
+        "button-primary": "0 6px 20px 0px hsl(var(--primary))",
+      },
+
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
       },

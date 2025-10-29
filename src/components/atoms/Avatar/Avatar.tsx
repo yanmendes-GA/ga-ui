@@ -1,18 +1,6 @@
-import { useState } from "react"
 import type { AvatarProps } from "./Avatar.types"
-import { cn } from "@/utils/cn"
-
-const sizeClasses = {
-  sm: "h-[40px] w-[40px] text-[16px]",
-  md: "h-[50px] w-[50px] text-[20px]",
-  lg: "h-[80px] w-[80px] text-[32px]",
-  xl: "h-[150px] w-[150px] text-[48px]",
-}
-
-const variantClasses = {
-  default: "bg-dark-500 border border-primary",
-  primary: "bg-primary",
-}
+import { getAvatarStyles } from "./Avatar.styles"
+import useAvatar from "./AvatarHook"
 
 export const Avatar = ({
   src,
@@ -20,35 +8,14 @@ export const Avatar = ({
   size = "md",
   variant = "primary",
   fallback,
-  className = "",
 }: AvatarProps) => {
-  const [imageError, setImageError] = useState(false)
-
-  function handleImageError(): void {
-    setImageError(true)
-  }
-
-  function getInitials(name: string): string {
-    return name
-      .split(" ")
-      .map(word => word[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2)
-  }
+  const { imageError, handleImageError, getInitials } = useAvatar()
 
   const shouldShowFallback = !src || imageError
   const displayFallback = fallback || getInitials(alt)
 
   return (
-    <div
-      className={cn(
-        "hover:shadow-elegant relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-primary-100 transition-all duration-300",
-        sizeClasses[size],
-        variantClasses[variant],
-        className,
-      )}
-    >
+    <div className={getAvatarStyles({ size, variant })}>
       {shouldShowFallback ? (
         <span>{displayFallback}</span>
       ) : (
