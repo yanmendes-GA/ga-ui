@@ -6,7 +6,7 @@ type StyleProps = {
 
 export const getFieldsetStyles = ({ focused }: StyleProps) => {
   return cn(
-    "relative border p-4 transition-colors duration-200 rounded-lg",
+    "relative border p-4 transition-colors duration-200 rounded-[8px]",
     focused ? "border-primary" : "border-dark-400",
   )
 }
@@ -16,12 +16,15 @@ export const getLegendStyles = () => {
 }
 
 export const getLegendLabelStyles = ({ focused }: StyleProps) => {
-  return cn("z-10 mx-1", focused ? "font-bold text-dark" : "text-dark-100")
+  return cn(
+    "z-10 mx-[8px]",
+    focused ? "font-bold text-dark" : "font-bold text-dark-100",
+  )
 }
 
 export const getLegendBgStyles = ({ focused }: StyleProps) => {
   return cn(
-    "absolute w-full h-full top-0 left-0 skew-x-[-40deg] rounded-tl-sm rounded-bl-[2px] rounded-br-sm rounded-tr-[2px] transition-colors",
+    "absolute -z-10 w-full h-full top-0 left-0 skew-x-[-40deg] rounded-tl-[2px] rounded-bl-[4px] rounded-br-[2px] rounded-tr-[4px] transition-colors",
     focused ? "bg-primary" : "bg-dark-400",
   )
 }
