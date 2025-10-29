@@ -8,9 +8,6 @@ import {
 } from "react"
 import type { FileUploaderProps } from "./FileUploader.types"
 
-/**
- * Propriedades que o hook `useFileUploader` necessita.
- */
 type UseFileUploaderProps = Pick<
   FileUploaderProps,
   "initialFile" | "onFileSelect" | "onView" | "acceptedFileTypes" | "disabled"
@@ -99,7 +96,6 @@ export const useFileUploader = ({
     (e: ChangeEvent<HTMLInputElement>) => {
       if (disabled) return
       handleFile(e.target.files?.[0])
-      // Reseta o input para permitir selecionar o mesmo arquivo novamente
       if (e.target) {
         e.target.value = ""
       }
@@ -108,7 +104,6 @@ export const useFileUploader = ({
   )
 
   const handleRootClick = useCallback(() => {
-    // Só abre o diálogo ao clicar se não houver arquivo
     if (!file) {
       openFileDialog()
     }

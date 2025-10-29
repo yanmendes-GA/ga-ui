@@ -15,7 +15,7 @@ const variantClasses = {
 
 type ButtonStyleProps = Pick<AvatarProps, "variant" | "size">
 
-export const getAvatarStyles = ({
+export const getAvatarWrapperStyles = ({
   variant = "default",
   size = "md",
 }: ButtonStyleProps) => {
@@ -25,3 +25,5 @@ export const getAvatarStyles = ({
     variantClasses[variant],
   )
 }
+
+export const getAvatarImageStyles = () => "h-full w-full object-cover"

@@ -1,5 +1,5 @@
 import type { AvatarProps } from "./Avatar.types"
-import { getAvatarStyles } from "./Avatar.styles"
+import { getAvatarWrapperStyles, getAvatarImageStyles } from "./Avatar.styles"
 import useAvatar from "./Avatar.hook"
 
 export const Avatar = ({
@@ -15,7 +15,7 @@ export const Avatar = ({
   const displayFallback = fallback || getInitials(alt)
 
   return (
-    <div className={getAvatarStyles({ size, variant })}>
+    <div className={getAvatarWrapperStyles({ size, variant })}>
       {shouldShowFallback ? (
         <span>{displayFallback}</span>
       ) : (
@@ -23,7 +23,7 @@ export const Avatar = ({
           src={src}
           alt={alt}
           onError={handleImageError}
-          className="h-full w-full object-cover"
+          className={getAvatarImageStyles()}
         />
       )}
     </div>

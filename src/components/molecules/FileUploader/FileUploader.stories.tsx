@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { action } from "@storybook/addon-actions" // Para Storybook v4
+import { action } from "@storybook/addon-actions"
 import { FileUploader } from "./FileUploader"
 
 const meta: Meta<typeof FileUploader> = {
@@ -7,12 +7,9 @@ const meta: Meta<typeof FileUploader> = {
   component: FileUploader,
   parameters: {
     layout: "centered",
-    // Adiciona um fundo escuro para simular o contexto da imagem
     backgrounds: {
       default: "dark",
-      values: [
-        { name: "dark", value: "#101820" }, // Cor $Dark do tailwind.config
-      ],
+      values: [{ name: "dark", value: "#101820" }],
     },
   },
   tags: ["autodocs"],
@@ -37,11 +34,10 @@ const meta: Meta<typeof FileUploader> = {
       description: "Callback (file: File) => void",
     },
     initialFile: {
-      control: "text", // Controlado via args nas histórias
+      control: "text",
       description: "Arquivo inicial para exibir o estado 'selecionado'",
     },
   },
-  // Define os args padrões para as histórias
   args: {
     label: "Upload de documento",
     disabled: false,
@@ -52,7 +48,6 @@ const meta: Meta<typeof FileUploader> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// Cria um arquivo mock para os stories
 const mockFile = new File(
   ["(conteúdo fictício do PDF)"],
   "Documento da mentoria.pdf",
@@ -88,7 +83,7 @@ export const FileSelected: Story = {
 export const SelectedWithoutView: Story = {
   args: {
     initialFile: mockFile,
-    onView: undefined, // Garante que não há callback de visualização
+    onView: undefined,
   },
 }
 

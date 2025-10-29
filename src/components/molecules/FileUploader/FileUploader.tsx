@@ -1,6 +1,6 @@
 import type { FileUploaderProps } from "./FileUploader.types"
 import { getUploaderStyles } from "./FileUploader.styles"
-import { useFileUploader } from "./FileUploader.hook"
+import { useFileUploader } from "./useFileUploader"
 import { Icon } from "@/atoms/Icon"
 import { Button } from "@/atoms/Button"
 
