@@ -29,7 +29,7 @@ export const ListItem = <T extends ElementType = "a">({
       }}
       {...props}
     >
-      <Icon name={icon} />
+      {icon && <Icon name={icon} />}
       <span>{label}</span>
     </Component>
   )
