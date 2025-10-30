@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react"
 
-import { Button } from "./Button";
+import { Button } from "./Button"
 
 const meta: Meta<typeof Button> = {
   title: "Atoms/Button",
@@ -31,10 +31,10 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
     },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
@@ -44,7 +44,7 @@ export const Default: Story = {
     icon: "filters",
     iconSide: "left",
   },
-};
+}
 
 export const Outline: Story = {
   args: {
@@ -54,7 +54,7 @@ export const Outline: Story = {
     icon: "filters",
     iconSide: "left",
   },
-};
+}
 
 export const Ghost: Story = {
   args: {
@@ -64,7 +64,7 @@ export const Ghost: Story = {
     icon: "filters",
     iconSide: "left",
   },
-};
+}
 
 export const IconRight: Story = {
   args: {
@@ -74,7 +74,7 @@ export const IconRight: Story = {
     icon: "arrow_forward",
     iconSide: "right",
   },
-};
+}
 
 export const IconOnly: Story = {
   args: {
@@ -83,7 +83,7 @@ export const IconOnly: Story = {
     disabled: false,
     icon: "filters",
   },
-};
+}
 
 export const IconOnlyOutline: Story = {
   args: {
@@ -92,7 +92,7 @@ export const IconOnlyOutline: Story = {
     disabled: false,
     icon: "filters",
   },
-};
+}
 
 export const IconOnlyGhost: Story = {
   args: {
@@ -101,7 +101,7 @@ export const IconOnlyGhost: Story = {
     disabled: false,
     icon: "filters",
   },
-};
+}
 
 export const Disabled: Story = {
   args: {
@@ -110,7 +110,7 @@ export const Disabled: Story = {
     disabled: true,
     icon: "filters",
   },
-};
+}
 
 export const DisabledOutline: Story = {
   args: {
@@ -119,7 +119,7 @@ export const DisabledOutline: Story = {
     disabled: true,
     icon: "filters",
   },
-};
+}
 
 export const DisabledGhost: Story = {
   args: {
@@ -128,4 +128,4 @@ export const DisabledGhost: Story = {
     disabled: true,
     icon: "filters",
   },
-};
+}

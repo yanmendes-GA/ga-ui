@@ -2,8 +2,9 @@ import { useState } from "react"
 import type { TabsProps, TabItem } from "./Tabs.types"
 import {
   getTabStyles,
-  getTabContentStyles,
   getTabBackgroundStyles,
+  getTabsWrapperStyles,
+  getWrapperBackgroundStyles,
 } from "./Tabs.styles"
 
 export const Tabs = ({ tabs, defaultTab, onTabChange }: TabsProps) => {
@@ -19,7 +20,7 @@ export const Tabs = ({ tabs, defaultTab, onTabChange }: TabsProps) => {
 
   return (
     <div
-      className="flex"
+      className={getTabsWrapperStyles()}
       role="tablist"
     >
       {tabs.map((tab, index) => (
@@ -37,10 +38,17 @@ export const Tabs = ({ tabs, defaultTab, onTabChange }: TabsProps) => {
             disabled: tab.disabled,
           })}
         >
-          <span className={getTabContentStyles()}>{tab.label}</span>
-          <div className={getTabBackgroundStyles()}></div>
+          <span>{tab.label}</span>
+          <div
+            className={getTabBackgroundStyles({
+              isActive: activeTab === tab.id,
+              disabled: tab.disabled,
+            })}
+          ></div>
         </button>
       ))}
+
+      <div className={getWrapperBackgroundStyles()}></div>
     </div>
   )
 }
