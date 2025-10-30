@@ -80,6 +80,7 @@ export const ColSpan: Story = {
             <Avatar
               alt="MT"
               size="sm"
+              variant="primary"
             />
             <span className="text-sm text-dark-100 truncate">
               Mentor De teste

@@ -6,7 +6,7 @@ export const Avatar = ({
   src,
   alt,
   size = "md",
-  variant = "primary",
+  variant = "default",
   fallback,
 }: AvatarProps) => {
   const { imageError, handleImageError, getInitials } = useAvatar()

@@ -8,13 +8,6 @@ const meta: Meta<typeof ActionMenu> = {
   component: ActionMenu,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [
-        { name: "dark", value: "#101820" },
-        { name: "light", value: "#FFFFFF" },
-      ],
-    },
   },
   tags: ["autodocs"],
   argTypes: {
