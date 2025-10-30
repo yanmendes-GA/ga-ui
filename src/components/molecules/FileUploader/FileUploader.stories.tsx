@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions"
 import { FileUploader } from "./FileUploader"
 
 const meta: Meta<typeof FileUploader> = {
-  title: "Molecules/FileUploader",
+  title: "Molecules/File Uploader",
   component: FileUploader,
   parameters: {
     layout: "centered",
