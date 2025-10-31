@@ -4,40 +4,25 @@ export type DataTextAlign = "left" | "center" | "right"
 export type DataSortDirection = "asc" | "desc"
 
 /**
+ * Define a estrutura de uma ação para o menu.
+ * O 'onClick' receberá o item <T> da linha.
+ */
+export interface DataAction<T> {
+  label: string
+  icon?: string
+  disabled?: boolean
+  onClick: (item: T) => void
+}
+
+/**
  * Define a estrutura de uma coluna da tabela.
- * Usamos um genérico <T> para que 'key' e 'render'
- * sejam fortemente tipados com base nos dados.
  */
 export interface DataTableColumn<T> {
-  /**
-   * Chave de acesso no objeto de dados (ex: 'title').
-   * Pode ser uma chave "virtual" (ex: 'actions')
-   * se uma função 'render' for fornecida.
-   */
   key: keyof T | string
-  /**
-   * Rótulo a ser exibido no header (ex: 'Título').
-   */
   label: string
-  /**
-   * Alinhamento do conteúdo (header e células).
-   * @default 'left'
-   */
   align?: DataTextAlign
-  /**
-   * Largura da coluna (ex: '200px', '25%').
-   */
   width?: string
-  /**
-   * Habilita a ordenação nesta coluna.
-   */
   sortable?: boolean
-  /**
-   * Função de renderização customizada (o 'slot').
-   * Recebe o item inteiro da linha e retorna um ReactNode.
-   * Se não for fornecida, a tabela renderizará o valor de 'key'
-   * (ex: item[key]).
-   */
   render?: (item: T) => ReactNode
 }
 
@@ -45,6 +30,11 @@ export interface DataTableColumn<T> {
  * Props do componente principal DataTable.
  */
 export interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
+  /**
+   * Chave única para cada item no array 'items' (ex: 'id').
+   * Essencial para as funções de expansão e ações.
+   */
+  rowKey: keyof T
   /**
    * Array de definições das colunas.
    */
@@ -54,8 +44,22 @@ export interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
    */
   items: T[]
   /**
-   * Habilita o header fixo (sticky) e um scroll
-   * vertical no container.
+   * Array de ações para renderizar um ActionMenu
+   * em cada linha. Adiciona uma coluna de ações automaticamente.
+   */
+  actions?: DataAction<T>[]
+  /**
+   * Função para renderizar o conteúdo expandido de uma linha.
+   * Adiciona uma coluna de expansão (toggle) automaticamente.
+   */
+  renderExpandedRow?: (item: T) => ReactNode
+  /**
+   * Callback disparado ao clicar em uma linha.
+   * Ativa o cursor 'pointer' na linha.
+   */
+  onRowClick?: (item: T) => void
+  /**
+   * Habilita o header fixo (sticky).
    * @default false
    */
   fixedHeader?: boolean

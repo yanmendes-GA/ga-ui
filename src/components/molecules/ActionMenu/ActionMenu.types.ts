@@ -11,7 +11,7 @@ export interface ActionMenuItem {
   onClick: () => void
 }
 
-export interface ActionMenuProps {
+export interface ActionMenuProps<T extends ActionMenuItem> {
   /**
    * O elemento (ex: <Button />) que irá disparar a abertura do menu.
    */
@@ -19,7 +19,7 @@ export interface ActionMenuProps {
   /**
    * Array de ações a serem exibidas no menu.
    */
-  items: ActionMenuItem[]
+  items: T[]
   /**
    * O lado do trigger onde o menu deve aparecer.
    * @default "bottom"

@@ -20,6 +20,8 @@ export const ListItem = <T extends ElementType = "a">({
       className={getListItemStyles({ isActive, isDisabled, className })}
       aria-current={isActive ? "page" : undefined}
       onClick={(e: React.MouseEvent) => {
+        e.stopPropagation()
+
         if (isDisabled) {
           e.preventDefault()
         }
@@ -30,7 +32,7 @@ export const ListItem = <T extends ElementType = "a">({
       {...props}
     >
       {icon && <Icon name={icon} />}
-      <span>{label}</span>
+      <span className="flex-1">{label}</span>
     </Component>
   )
 }

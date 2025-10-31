@@ -1,15 +1,15 @@
 import { cloneElement } from "react"
-import type { ActionMenuProps } from "./ActionMenu.types"
+import type { ActionMenuItem, ActionMenuProps } from "./ActionMenu.types"
 import { useActionMenu } from "./useActionMenu"
 import { getWrapperStyles, getActionMenuPanelStyles } from "./ActionMenu.styles"
 import { ListItem } from "@/molecules/ListItem"
 
-export const ActionMenu = ({
+export const ActionMenu = <T extends ActionMenuItem>({
   trigger,
   items,
   side = "bottom",
   align = "start",
-}: ActionMenuProps) => {
+}: ActionMenuProps<T>) => {
   const { isOpen, toggleMenu, wrapperRef, menuId, getTriggerProps } =
     useActionMenu()
 
@@ -41,7 +41,8 @@ export const ActionMenu = ({
                 id={item.id}
                 label={item.label}
                 icon={item.icon}
-                onClick={() => {
+                onClick={(e: React.MouseEvent) => {
+                  e.stopPropagation()
                   item.onClick()
                   toggleMenu()
                 }}

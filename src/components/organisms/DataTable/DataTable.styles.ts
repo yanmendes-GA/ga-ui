@@ -35,17 +35,19 @@ export const getHeaderCellStyles = ({
       "text-center": align === "center",
       "text-right": align === "right",
     },
-
     {
       "cursor-pointer hover:text-dark-100": sortable,
     },
   )
 }
 
-export const getRowStyles = () => {
+export const getRowStyles = ({ clickable }: { clickable?: boolean }) => {
   return cn(
     "border-b border-dark-400 last:border-b-0",
     "hover:bg-dark-400 transition-colors",
+    {
+      "cursor-pointer": clickable,
+    },
   )
 }
 
@@ -59,4 +61,16 @@ export const getBodyCellStyles = ({ align }: { align?: DataTextAlign }) => {
 
 export const getEmptyCellStyles = () => {
   return cn("p-8 text-center text-dark-300 italic")
+}
+
+// --- Estilos para Linha Expandida ---
+
+export const getExpandedRowStyles = () => {
+  // Estilo para a <tr> da linha expandida
+  return cn("border-b border-dark-400")
+}
+
+export const getExpandedCellStyles = () => {
+  // A célula expandida usa um background mais escuro
+  return cn("p-4 bg-dark-500")
 }

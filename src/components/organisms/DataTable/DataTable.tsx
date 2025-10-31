@@ -1,5 +1,10 @@
-import { useState, useMemo, type ReactNode } from "react"
-import type { DataTableProps, DataSortDirection } from "./DataTable.types"
+import { useState, useMemo, type ReactNode, Fragment } from "react"
+import type {
+  DataTableProps,
+  DataSortDirection,
+  DataTableColumn,
+} from "./DataTable.types"
+import { useDataTable } from "./useDataTable"
 import {
   getWrapperStyles,
   getTableStyles,
@@ -8,17 +13,23 @@ import {
   getRowStyles,
   getBodyCellStyles,
   getEmptyCellStyles,
+  getExpandedRowStyles,
+  getExpandedCellStyles,
 } from "./DataTable.styles"
 import { cn } from "@/utils/cn"
 import { Text } from "@/atoms/Text"
 import { Icon } from "@/atoms/Icon"
+import { Button } from "@/atoms/Button"
+// Importa o ActionMenu que você forneceu
+import { ActionMenu } from "@/molecules/ActionMenu"
 
+// Componente interno para o ícone de Ordenação
 const SortIcon = ({
   isSorted,
   direction,
 }: {
   isSorted: boolean
-  direction: DataSortDirection | null
+  direction: DataSortDirection
 }) => {
   if (!isSorted) {
     return <Icon name="sort-circle" />
@@ -30,54 +41,95 @@ const SortIcon = ({
 export const DataTable = <T extends {}>({
   columns,
   items,
+  rowKey,
+  actions,
+  renderExpandedRow,
+  onRowClick,
   fixedHeader = false,
   emptyMessage = "Nenhum registro encontrado.",
   className,
   ...props
 }: DataTableProps<T>) => {
-  const colSpan = columns.length
+  // Hook para lógica de ordenação
+  const { sortedItems, sortKey, sortDirection, handleHeaderClick } =
+    useDataTable(items)
 
-  const [sortKey, setSortKey] = useState<string | null>(null)
-  const [sortDirection, setSortDirection] = useState<DataSortDirection | null>(
-    "asc",
-  )
+  // Estado para controlar linhas expandidas
+  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({})
 
-  const handleHeaderClick = (key: string, sortable?: boolean) => {
-    if (!sortable) return
-
-    let direction: DataSortDirection | null = "asc"
-    if (key === sortKey && sortDirection === "asc") {
-      direction = "desc"
-    }
-    setSortKey(key)
-    setSortDirection(direction)
+  const toggleRowExpansion = (id: string) => {
+    setExpandedRows(prev => ({ ...prev, [id]: !prev[id] }))
   }
 
-  const sortedItems = useMemo(() => {
-    if (!sortKey) return items
+  // Memo para adicionar colunas de expansão e ações dinamicamente
+  const displayColumns = useMemo(() => {
+    const newColumns: DataTableColumn<T>[] = [...columns]
 
-    const newItems = [...items]
+    // 1. Adiciona coluna de Ações (ao final)
+    if (actions && actions.length > 0) {
+      newColumns.push({
+        key: "__actions",
+        label: "",
+        align: "right",
+        width: "50px", // Largura para o ícone
+        render: item => {
+          const menuItems = actions.map((action, index) => ({
+            id: `${item[rowKey] as string}-action-${index}`,
+            label: action.label,
+            icon: action.icon,
+            disabled: action.disabled,
+            onClick: () => action.onClick(item),
+          }))
 
-    newItems.sort((a, b) => {
-      const aValue = a[sortKey as keyof T]
-      const bValue = b[sortKey as keyof T]
+          return (
+            <ActionMenu
+              items={menuItems}
+              trigger={
+                <Button
+                  id={`trigger-${item[rowKey] as string}`}
+                  iconOnly
+                  icon="menu-dots"
+                  variant="ghost"
+                  size="sm"
+                />
+              }
+              side="bottom"
+              align="end"
+            />
+          )
+        },
+      })
+    }
 
-      if (aValue === null || aValue === undefined)
-        return sortDirection === "asc" ? -1 : 1
-      if (bValue === null || bValue === undefined)
-        return sortDirection === "asc" ? 1 : -1
+    // 2. Adiciona coluna de Expansão (no início)
+    if (renderExpandedRow) {
+      newColumns.unshift({
+        key: "__expand",
+        label: "",
+        width: "50px",
+        render: item => {
+          const id = item[rowKey] as string
+          const isExpanded = !!expandedRows[id]
+          return (
+            <Button
+              variant="ghost"
+              size="sm"
+              iconOnly
+              icon={isExpanded ? "caret-down" : "caret-right"}
+              onClick={e => {
+                e.stopPropagation()
+                toggleRowExpansion(id)
+              }}
+            />
+          )
+        },
+      })
+    }
 
-      if (aValue < bValue) {
-        return sortDirection === "asc" ? -1 : 1
-      }
-      if (aValue > bValue) {
-        return sortDirection === "asc" ? 1 : -1
-      }
-      return 0
-    })
+    return newColumns
+  }, [columns, actions, renderExpandedRow, expandedRows, rowKey])
 
-    return newItems
-  }, [items, sortKey, sortDirection])
+  const colSpan = displayColumns.length
 
   return (
     <div className={getWrapperStyles({ fixedHeader })}>
@@ -87,7 +139,7 @@ export const DataTable = <T extends {}>({
       >
         <thead className={getHeaderStyles({ fixedHeader })}>
           <tr>
-            {columns.map(col => {
+            {displayColumns.map(col => {
               const keyString = String(col.key)
               const isSorted = col.key === sortKey
               const ariaSort = isSorted
@@ -118,11 +170,10 @@ export const DataTable = <T extends {}>({
                     })}
                   >
                     <span>{col.label}</span>
-
                     {col.sortable && (
                       <SortIcon
                         isSorted={isSorted}
-                        direction={sortDirection || "asc"}
+                        direction={sortDirection}
                       />
                     )}
                   </div>
@@ -134,25 +185,46 @@ export const DataTable = <T extends {}>({
 
         <tbody>
           {sortedItems.length > 0 ? (
-            sortedItems.map((item, index) => (
-              <tr
-                key={index}
-                className={getRowStyles()}
-              >
-                {columns.map(col => (
-                  <td
-                    key={String(col.key)}
-                    className={getBodyCellStyles({ align: col.align })}
-                    style={{ width: col.width }}
+            sortedItems.map(item => {
+              const id = item[rowKey] as string
+              const isExpanded = !!expandedRows[id]
+
+              return (
+                <Fragment key={id}>
+                  {/* --- Linha Principal --- */}
+                  <tr
+                    className={getRowStyles({ clickable: !!onRowClick })}
+                    onClick={() => onRowClick?.(item)}
                   >
-                    {col.render
-                      ? col.render(item)
-                      : (item[col.key as keyof T] as ReactNode)}
-                  </td>
-                ))}
-              </tr>
-            ))
+                    {displayColumns.map(col => (
+                      <td
+                        key={String(col.key)}
+                        className={getBodyCellStyles({ align: col.align })}
+                        style={{ width: col.width }}
+                      >
+                        {col.render
+                          ? col.render(item)
+                          : (item[col.key as keyof T] as ReactNode)}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* --- Linha Expandida (Condicional) --- */}
+                  {isExpanded && renderExpandedRow && (
+                    <tr className={getExpandedRowStyles()}>
+                      <td
+                        colSpan={colSpan}
+                        className={getExpandedCellStyles()}
+                      >
+                        {renderExpandedRow(item)}
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
+              )
+            })
           ) : (
+            // --- Linhas Vazias ---
             <tr>
               <td
                 colSpan={colSpan}

@@ -41,6 +41,7 @@ export const useActionMenu = () => {
       "aria-expanded": isOpen,
       "aria-controls": isOpen ? menuId : undefined,
       onClick: (e: React.MouseEvent) => {
+        e.stopPropagation()
         toggleMenu()
         originalOnClick?.(e)
       },

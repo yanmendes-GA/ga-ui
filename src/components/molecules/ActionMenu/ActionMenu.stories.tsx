@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ActionMenu } from "./ActionMenu"
 import { Button } from "../../atoms/Button"
-import type { ActionMenuItem } from "./ActionMenu.types"
+import type { ActionMenuItem, ActionMenuProps } from "./ActionMenu.types"
 
-const meta: Meta<typeof ActionMenu> = {
+const meta: Meta<ActionMenuProps<ActionMenuItem>> = {
   title: "Molecules/Action Menu",
   component: ActionMenu,
   parameters: {
@@ -34,7 +34,7 @@ const meta: Meta<typeof ActionMenu> = {
 }
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<ActionMenuProps<ActionMenuItem>>
 
 const defaultItems: ActionMenuItem[] = [
   {

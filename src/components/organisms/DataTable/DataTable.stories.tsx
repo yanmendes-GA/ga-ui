@@ -1,19 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { DataTable } from "./DataTable"
-import type { DataTableColumn } from "./DataTable.types"
+import type { DataAction, DataTableColumn } from "./DataTable.types"
 import { Text } from "../../atoms/Text"
-import { Button } from "../../atoms/Button"
 import { Avatar } from "../../atoms/Avatar"
 import { Chip } from "../../molecules/Chip"
-
-const ThreeDots = () => (
-  <Button
-    iconOnly
-    icon="dots_three_vertical"
-    variant="ghost"
-    size="sm"
-  />
-)
 
 const meta: Meta<typeof DataTable> = {
   title: "Organisms/Data Table",
@@ -25,9 +15,12 @@ const meta: Meta<typeof DataTable> = {
   argTypes: {
     fixedHeader: { control: "boolean" },
     emptyMessage: { control: "text" },
+    rowKey: { control: false },
     columns: { control: false },
     items: { control: false },
-    // sortKey, sortDirection, onSort removidos
+    actions: { control: false },
+    renderExpandedRow: { control: false },
+    onRowClick: { control: false },
   },
   args: {
     fixedHeader: false,
@@ -92,7 +85,7 @@ const columnsDefinition: DataTableColumn<MentoriasData>[] = [
   {
     key: "status",
     label: "Status",
-    width: "50px",
+    width: "300px",
     render: item => <Chip>{item.status}</Chip>,
   },
   {
@@ -117,12 +110,24 @@ const columnsDefinition: DataTableColumn<MentoriasData>[] = [
     width: "15%",
     sortable: true,
   },
+]
+
+const mockActions: DataAction<MentoriasData>[] = [
   {
-    key: "actions",
-    label: "",
-    align: "right",
-    width: "5%",
-    render: () => <ThreeDots />,
+    label: "Editar Mentoria",
+    icon: "pencil",
+    onClick: item => alert(`Editando: ${item.title}`),
+  },
+  {
+    label: "Ver Detalhes",
+    icon: "eye",
+    onClick: item => alert(`Vendo: ${item.title}`),
+  },
+  {
+    label: "Excluir",
+    icon: "trash",
+    disabled: true,
+    onClick: item => alert(`Excluindo: ${item.title}`),
   },
 ]
 
@@ -131,13 +136,54 @@ export const Default: Story = {
   args: {
     columns: columnsDefinition,
     items: mockItems,
+    rowKey: "id",
+  },
+}
+
+export const Clickable: Story = {
+  name: "Linhas Clicáveis",
+  args: {
+    ...Default.args,
+    onRowClick: (item: MentoriasData) =>
+      alert(`Clicou na linha: ${item.title}`),
+  },
+}
+
+export const WithActions: Story = {
+  name: "Com Ações (ActionMenu)",
+  args: {
+    ...Default.args,
+    actions: mockActions,
+  },
+}
+
+export const Expandable: Story = {
+  name: "Linhas Expansíveis",
+  args: {
+    ...Default.args,
+    renderExpandedRow: (item: MentoriasData) => (
+      <div style={{ padding: "16px", backgroundColor: "#3F464C" }}>
+        <Text>Detalhes expandidos para: {item.title}</Text>
+        <Text variant="small">Empresa: {item.companyName}</Text>
+        <Text variant="small">Status: {item.status}</Text>
+      </div>
+    ),
+  },
+}
+
+export const FullFeatures: Story = {
+  name: "Completo (Ações + Expansível + Clicável)",
+  args: {
+    ...Clickable.args,
+    ...WithActions.args,
+    ...Expandable.args,
   },
 }
 
 export const FixedHeader: Story = {
   name: "Header Fixo",
   args: {
-    ...Default.args,
+    ...FullFeatures.args,
     fixedHeader: true,
   },
 }
@@ -147,16 +193,6 @@ export const Empty: Story = {
   args: {
     columns: columnsDefinition,
     items: [],
-  },
-}
-
-// useSortableData e DataTableWithSorting removidos
-
-export const Sortable: Story = {
-  name: "Com Ordenação",
-  // 'render' não é mais necessário
-  args: {
-    columns: columnsDefinition,
-    items: mockItems,
+    actions: mockActions,
   },
 }
