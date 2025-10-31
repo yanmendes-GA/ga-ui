@@ -28,7 +28,7 @@ export const Button = ({
     >
       {icon && <Icon name={icon} />}
 
-      {!iconOnly && children && <div>{children}</div>}
+      {!icon && iconOnly && children && <div>{children}</div>}
     </button>
   )
 }
