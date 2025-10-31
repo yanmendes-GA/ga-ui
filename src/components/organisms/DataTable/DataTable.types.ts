@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react"
+import type { PaginatorProps } from "@/molecules/Paginator"
 
 export type DataTextAlign = "left" | "center" | "right"
 export type DataSortDirection = "asc" | "desc"
@@ -68,4 +69,14 @@ export interface DataTableProps<T> extends HTMLAttributes<HTMLTableElement> {
    * @default 'Nenhum registro encontrado.'
    */
   emptyMessage?: string
+  /**
+   * Conteúdo customizado para o rodapé da tabela.
+   * Se fornecido, sobrepõe o paginador padrão.
+   */
+  footer?: ReactNode
+  /**
+   * Configurações do paginador.
+   * Se fornecido, um paginador será renderizado no rodapé.
+   */
+  paginator?: Omit<PaginatorProps, "onPageChange" | "totalCount">
 }

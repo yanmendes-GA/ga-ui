@@ -3,11 +3,13 @@ import type { ListItemProps } from "./ListItem.types"
 import { getListItemStyles } from "./ListItem.styles"
 import { Icon } from "@/atoms/Icon"
 
-export const ListItem = <T extends ElementType = "a">({
+export const ListItem = <T extends ElementType = "a">({ 
   as,
   label,
   icon,
   isActive = false,
+  to,
+  onClick,
   className,
   ...props
 }: ListItemProps<T>) => {
@@ -17,6 +19,7 @@ export const ListItem = <T extends ElementType = "a">({
 
   return (
     <Component
+      href={to}
       className={getListItemStyles({ isActive, isDisabled, className })}
       aria-current={isActive ? "page" : undefined}
       onClick={(e: React.MouseEvent) => {
@@ -25,8 +28,8 @@ export const ListItem = <T extends ElementType = "a">({
         if (isDisabled) {
           e.preventDefault()
         }
-        if (props.onClick) {
-          ;(props as any).onClick(e)
+        if (onClick) {
+          (onClick as any)(e)
         }
       }}
       {...props}
@@ -36,3 +39,4 @@ export const ListItem = <T extends ElementType = "a">({
     </Component>
   )
 }
+

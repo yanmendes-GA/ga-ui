@@ -74,3 +74,13 @@ export const getExpandedCellStyles = () => {
   // A célula expandida usa um background mais escuro
   return cn("p-4 bg-dark-500")
 }
+
+// --- Estilos para o Footer ---
+
+export const getFooterStyles = () => {
+  return cn("bg-dark-500 border-t-2 border-dark-400")
+}
+
+export const getFooterCellStyles = () => {
+  return cn("p-2")
+}

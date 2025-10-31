@@ -75,6 +75,15 @@ const mockItems: MentoriasData[] = [
   },
 ]
 
+const mockItemsWithPagination = Array.from({ length: 20 }, (_, i) => ({
+  id: `${i + 1}`,
+  title: `Mentoria de teste ${i + 1}`,
+  status: i % 2 === 0 ? "CONCLUÍDO" : "NÃO INICIADO",
+  companyName: `Empresa de teste ${String.fromCharCode(65 + i)}`,
+  companyInitial: "GA",
+  date: `01/${i + 1 > 9 ? i + 1 : `0${i + 1}`}/2025`,
+}))
+
 const columnsDefinition: DataTableColumn<MentoriasData>[] = [
   {
     key: "title",
@@ -86,7 +95,11 @@ const columnsDefinition: DataTableColumn<MentoriasData>[] = [
     key: "status",
     label: "Status",
     width: "300px",
-    render: item => <Chip>{item.status}</Chip>,
+    render: item => (
+      <Chip variant={item.status === "NÃO INICIADO" ? "default" : "success"}>
+        {item.status}
+      </Chip>
+    ),
   },
   {
     key: "companyName",
@@ -137,6 +150,17 @@ export const Default: Story = {
     columns: columnsDefinition,
     items: mockItems,
     rowKey: "id",
+  },
+}
+
+export const WithPaginator: Story = {
+  name: "Com Paginação",
+  args: {
+    ...Default.args,
+    items: mockItemsWithPagination,
+    paginator: {
+      pageSize: 2,
+    },
   },
 }
 

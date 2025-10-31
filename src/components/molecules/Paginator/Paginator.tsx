@@ -73,17 +73,10 @@ export const Paginator = ({
 
         if (pageNumber === DOTS) {
           return (
-            <Button
-              iconOnly
-              variant="ghost"
-              size="sm"
-              key={key}
-            >
-              <Icon
-                color="dark-300"
-                name="menu-dots"
-              />
-            </Button>
+            <Icon
+              color="dark-300"
+              name="menu-dots"
+            />
           )
         }
 

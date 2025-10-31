@@ -15,13 +15,15 @@ import {
   getEmptyCellStyles,
   getExpandedRowStyles,
   getExpandedCellStyles,
+  getFooterStyles,
+  getFooterCellStyles,
 } from "./DataTable.styles"
 import { cn } from "@/utils/cn"
 import { Text } from "@/atoms/Text"
 import { Icon } from "@/atoms/Icon"
 import { Button } from "@/atoms/Button"
-// Importa o ActionMenu que você forneceu
 import { ActionMenu } from "@/molecules/ActionMenu"
+import { Paginator } from "@/molecules/Paginator"
 
 // Componente interno para o ícone de Ordenação
 const SortIcon = ({
@@ -38,7 +40,7 @@ const SortIcon = ({
   return <Icon name={iconName} />
 }
 
-export const DataTable = <T extends {}>({
+export const DataTable = <T extends {}>({ 
   columns,
   items,
   rowKey,
@@ -47,12 +49,27 @@ export const DataTable = <T extends {}>({
   onRowClick,
   fixedHeader = false,
   emptyMessage = "Nenhum registro encontrado.",
+  footer,
+  paginator,
   className,
   ...props
 }: DataTableProps<T>) => {
   // Hook para lógica de ordenação
-  const { sortedItems, sortKey, sortDirection, handleHeaderClick } =
+  const { sortedItems, sortKey, sortDirection, handleHeaderClick } = 
     useDataTable(items)
+
+  // Estado para controlar a página atual
+  const [currentPage, setCurrentPage] = useState(paginator?.currentPage ?? 1)
+
+  // Lógica de paginação
+  const paginatedItems = useMemo(() => {
+    if (!paginator) return sortedItems
+
+    const { pageSize } = paginator
+    const start = (currentPage - 1) * pageSize
+    const end = start + pageSize
+    return sortedItems.slice(start, end)
+  }, [sortedItems, currentPage, paginator])
 
   // Estado para controlar linhas expandidas
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({})
@@ -131,13 +148,19 @@ export const DataTable = <T extends {}>({
 
   const colSpan = displayColumns.length
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    // Reseta as linhas expandidas ao mudar de página
+    setExpandedRows({})
+  }
+
   return (
     <div className={getWrapperStyles({ fixedHeader })}>
       <table
         className={cn(getTableStyles(), className)}
         {...props}
       >
-        <thead className={getHeaderStyles({ fixedHeader })}>
+        <thead className={getHeaderStyles({ fixedHeader })}> 
           <tr>
             {displayColumns.map(col => {
               const keyString = String(col.key)
@@ -184,8 +207,8 @@ export const DataTable = <T extends {}>({
         </thead>
 
         <tbody>
-          {sortedItems.length > 0 ? (
-            sortedItems.map(item => {
+          {paginatedItems.length > 0 ? (
+            paginatedItems.map(item => {
               const id = item[rowKey] as string
               const isExpanded = !!expandedRows[id]
 
@@ -235,7 +258,31 @@ export const DataTable = <T extends {}>({
             </tr>
           )}
         </tbody>
+
+        {(footer || paginator) && (
+          <tfoot className={getFooterStyles()}>
+            <tr>
+              <td
+                colSpan={colSpan}
+                className={getFooterCellStyles()}
+              >
+                {footer ??
+                  (paginator && (
+                    <div className="flex justify-center">
+                      <Paginator
+                        {...paginator}
+                        totalCount={items.length}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                      />
+                    </div>
+                  ))}
+              </td>
+            </tr>
+          </tfoot>
+        )}
       </table>
     </div>
   )
 }
+

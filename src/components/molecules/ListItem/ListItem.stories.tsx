@@ -29,13 +29,12 @@ const meta: Meta<typeof ListItem> = {
     disabled: {
       control: "boolean",
     },
-    href: {
+    to: {
       control: "text",
       if: { arg: "as", eq: "a" },
     },
     onClick: {
       action: "clicked",
-      if: { arg: "as", eq: "button" },
     },
   },
   args: {
@@ -44,7 +43,7 @@ const meta: Meta<typeof ListItem> = {
     icon: "chart-pie-alt",
     isActive: false,
     disabled: false,
-    href: "#",
+    to: "#",
   },
 }
 
@@ -75,6 +74,6 @@ export const AsButton: Story = {
     as: "button",
     label: "Click Me",
     icon: "chart-pie-alt",
-    href: undefined,
+    to: undefined,
   },
 }

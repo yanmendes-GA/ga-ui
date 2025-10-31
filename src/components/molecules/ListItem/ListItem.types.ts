@@ -5,4 +5,5 @@ export type ListItemProps<T extends ElementType = "a"> = {
   label: string
   icon?: string
   isActive?: boolean
+  to?: string
 } & Omit<ComponentPropsWithoutRef<T>, "children">
