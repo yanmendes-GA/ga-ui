@@ -1,4 +1,4 @@
-import type { TextareaVariant } from "@/molecules/Textarea" // Reutilizando a tipagem
+import type { Editor } from "@tiptap/react"
 
 /**
  * Define os botões de controle disponíveis na toolbar.
@@ -55,10 +55,22 @@ export interface RichTextProps {
   /**
    * Define a variante de feedback (reutilizando do Textarea).
    */
-  variant?: TextareaVariant
+  variant?: "default" | "success" | "error"
   /**
    * Array de controles a serem exibidos na toolbar.
    * Se não for fornecido, usará o 'defaultControls'.
    */
   controls?: RichTextControl[]
+}
+
+export interface RichTextToolbarProps {
+  editor: Editor | null
+  controls: RichTextControl[]
+}
+
+export interface ToolbarButtonProps {
+  icon: string
+  onClick: () => void
+  isActive?: boolean
+  disabled?: boolean
 }

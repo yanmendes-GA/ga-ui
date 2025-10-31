@@ -1,8 +1,8 @@
 import { cn } from "@/utils/cn"
+import "./RichTextEditor.css"
 
-// Reutiliza o wrapper do Textarea (gap, w-full, etc)
 export const getWrapperStyles = () => {
-  return cn("flex w-full flex-col gap-2") //
+  return cn("flex w-full flex-col gap-2")
 }
 
 type ContainerStyleProps = {
@@ -12,19 +12,15 @@ type ContainerStyleProps = {
   isFocused?: boolean
 }
 
-// Esta função é uma CÓPIA ADAPTADA de 'getTextareaContainerStyles'
 export const getEditorContainerStyles = ({
   variant,
   disabled,
   readonly,
-  isFocused,
 }: ContainerStyleProps) => {
   return cn(
     "flex flex-col rounded-[12px] bg-dark transition-all border border-transparent overflow-hidden",
 
-    // Lógica de borda e foco
     {
-      "border-dark-200": isFocused && variant === "default", // Foco!
       "border-error": variant === "error",
       "border-success": variant === "success",
       "bg-dark-300 border-dark-500": readonly,
@@ -33,18 +29,15 @@ export const getEditorContainerStyles = ({
   )
 }
 
-// NOVO: Estilização do conteúdo do Tiptap
 export const getEditorProseStyles = () => {
   return cn(
-    "prose prose-invert max-w-none w-full h-full min-h-[120px] p-4",
-    "font-medium text-dark-100", // Estilos base de texto
+    "prose prose-invert max-w-none w-full h-full min-h-[120px] border border-transparent",
+    "text-dark-100",
 
-    // Removemos o 'prose' padrão e aplicamos o nosso
     "prose-p:m-0",
-    "prose-strong:text-dark-100", // Nossos estilos de 'bold'
-    "prose-em:text-dark-100", // Nossos estilos de 'italic'
+    "prose-strong:text-dark-100",
+    "prose-em:text-dark-100",
 
-    // Estilos do Placeholder
     "prose-p.is-editor-empty:before:content-[attr(data-placeholder)]",
     "prose-p.is-editor-empty:before:text-dark-300",
     "prose-p.is-editor-empty:before:text-[12px]",
@@ -52,7 +45,6 @@ export const getEditorProseStyles = () => {
     "prose-p.is-editor-empty:before:float-left",
     "prose-p.is-editor-empty:before:h-0",
 
-    // Foco do ProseMirror
     "focus:outline-none focus:ring-0",
   )
 }

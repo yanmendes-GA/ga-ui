@@ -7,6 +7,7 @@ export const Button = ({
   icon,
   iconSide = "left",
   variant = "default",
+  size = "default",
   iconOnly = false,
   disabled = false,
   onClick,
@@ -15,7 +16,13 @@ export const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={getButtonStyles({ variant, iconOnly, iconSide, disabled })}
+      className={getButtonStyles({
+        variant,
+        iconOnly,
+        iconSide,
+        disabled,
+        size,
+      })}
     >
       {icon && <Icon name={icon} />}
 

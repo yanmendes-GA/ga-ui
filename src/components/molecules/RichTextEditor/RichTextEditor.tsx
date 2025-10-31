@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
@@ -13,7 +14,6 @@ import {
 } from "./RichTextEditor.styles"
 import { RichTextToolbar } from "./RichTextToolbar"
 
-// DEFINIÇÃO DO DEFAULT (como você pediu)
 const defaultControls: RichTextControl[] = [
   "undo",
   "redo",
@@ -28,7 +28,7 @@ const defaultControls: RichTextControl[] = [
   "clear",
 ]
 
-export const RichText = ({
+export const RichTextEditor = ({
   id,
   label,
   value,
@@ -39,14 +39,15 @@ export const RichText = ({
   placeholder,
   controls = defaultControls,
 }: RichTextProps) => {
+  const [_, setSelectionState] = useState(0)
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         // Configurações do starter kit (ex: desabilitar 'bold' se não quisermos)
       }),
-      Underline, // Adiciona extensão de underline
+      Underline,
       Link.configure({
-        // Configura o link
         openOnClick: false,
       }),
       Placeholder.configure({
@@ -58,14 +59,13 @@ export const RichText = ({
       onChange(editor.getHTML())
     },
     editable: !disabled && !readonly,
+    onSelectionUpdate: () => {
+      setSelectionState(s => s + 1)
+    },
   })
-
-  // Lógica de estado de foco para o container
-  // (O Tiptap nos dá 'editor.isFocused')
 
   return (
     <div className={getWrapperStyles()}>
-      {/* 1. Label (Reutilizado) */}
       {label && (
         // <label
         //   htmlFor={id}
@@ -76,16 +76,15 @@ export const RichText = ({
         <Text variant="label">{label}</Text>
       )}
 
-      {/* 2. Container (Toolbar + Editor) */}
       <div
+        id="richTextContainer"
         className={getEditorContainerStyles({
           variant,
           disabled,
           readonly,
-          isFocused: editor?.isFocused || false, // Passa o estado de foco
+          isFocused: editor.isFocused,
         })}
       >
-        {/* 2.1. A Toolbar */}
         {!readonly && (
           <RichTextToolbar
             editor={editor}
@@ -93,11 +92,12 @@ export const RichText = ({
           />
         )}
 
-        {/* 2.2. O Editor */}
+        <hr className="border-dark-500" />
+
         <EditorContent
           id={id}
           editor={editor}
-          className={getEditorProseStyles()} // Estilos do .ProseMirror
+          className={getEditorProseStyles()}
         />
       </div>
     </div>

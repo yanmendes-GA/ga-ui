@@ -1,0 +1,16 @@
+/* Sobrescreve o estilo padrão de foco do richtext */
+
+div#richTextContainer div[contenteditable="true"] {
+  height: 100%;
+  min-height: 120px;
+  padding: 1rem;
+}
+
+div#richTextContainer:has(div[contenteditable="true"].ProseMirror-focused) {
+  border: 1px solid hsl(var(--dark-200));
+}
+
+div#richTextContainer div[contenteditable="true"].ProseMirror-focused {
+  border: none;
+  outline: none;
+}
