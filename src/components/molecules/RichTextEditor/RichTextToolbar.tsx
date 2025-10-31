@@ -7,17 +7,22 @@ import { Button } from "@/atoms/Button"
 
 const ToolbarButton = ({
   icon,
-  onClick,
+  onMouseDown,
   isActive = false,
   disabled = false,
 }: ToolbarButtonProps) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    onMouseDown(event)
+  }
+
   return (
     <Button
       iconOnly
       icon={icon}
       size="xs"
       variant={isActive ? "outline" : "ghost"}
-      onClick={onClick}
+      onMouseDown={handleMouseDown}
       disabled={disabled}
     />
   )
@@ -59,7 +64,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="bold"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleBold().run()}
+            onMouseDown={() => editor.chain().focus().toggleBold().run()}
             isActive={editor.isActive("bold")}
           />
         )
@@ -69,7 +74,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="italic"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleItalic().run()}
+            onMouseDown={() => editor.chain().focus().toggleItalic().run()}
             isActive={editor.isActive("italic")}
           />
         )
@@ -79,7 +84,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="underline"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            onMouseDown={() => editor.chain().focus().toggleUnderline().run()}
             isActive={editor.isActive("underline")}
           />
         )
@@ -89,16 +94,17 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="undo"
             disabled={!editor.can().undo()}
-            onClick={() => editor.chain().focus().undo().run()}
+            onMouseDown={() => editor.chain().focus().undo().run()}
           />
         )
+
       case "heading-1":
         return (
           <ToolbarButton
             key={control}
             icon="h1"
             disabled={isDisabled}
-            onClick={() =>
+            onMouseDown={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
             isActive={editor.isActive("heading", { level: 1 })}
@@ -111,7 +117,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="strikethrough"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleStrike().run()}
+            onMouseDown={() => editor.chain().focus().toggleStrike().run()}
             isActive={editor.isActive("strike")}
           />
         )
@@ -122,7 +128,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="paragraph"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().setParagraph().run()}
+            onMouseDown={() => editor.chain().focus().setParagraph().run()}
             isActive={editor.isActive("paragraph")}
           />
         )
@@ -133,7 +139,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="h2"
             disabled={isDisabled}
-            onClick={() =>
+            onMouseDown={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
             isActive={editor.isActive("heading", { level: 2 })}
@@ -146,7 +152,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="h3"
             disabled={isDisabled}
-            onClick={() =>
+            onMouseDown={() =>
               editor.chain().focus().toggleHeading({ level: 3 }).run()
             }
             isActive={editor.isActive("heading", { level: 3 })}
@@ -159,7 +165,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="list"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            onMouseDown={() => editor.chain().focus().toggleBulletList().run()}
             isActive={editor.isActive("bulletList")}
           />
         )
@@ -170,7 +176,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="list-ol"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            onMouseDown={() => editor.chain().focus().toggleOrderedList().run()}
             isActive={editor.isActive("orderedList")}
           />
         )
@@ -181,7 +187,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="quote-right"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            onMouseDown={() => editor.chain().focus().toggleBlockquote().run()}
             isActive={editor.isActive("blockquote")}
           />
         )
@@ -192,7 +198,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="code-simple"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().toggleCode().run()}
+            onMouseDown={() => editor.chain().focus().toggleCode().run()}
             isActive={editor.isActive("code")}
           />
         )
@@ -203,7 +209,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="redo"
             disabled={!editor.can().redo()}
-            onClick={() => editor.chain().focus().redo().run()}
+            onMouseDown={() => editor.chain().focus().redo().run()}
           />
         )
 
@@ -213,7 +219,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="link"
             disabled={isDisabled}
-            onClick={setLink}
+            onMouseDown={setLink}
             isActive={editor.isActive("link")}
           />
         )
@@ -224,7 +230,7 @@ export const RichTextToolbar = ({ editor, controls }: RichTextToolbarProps) => {
             key={control}
             icon="eraser"
             disabled={isDisabled}
-            onClick={() => editor.chain().focus().unsetAllMarks().run()}
+            onMouseDown={() => editor.chain().focus().unsetAllMarks().run()}
           />
         )
 

@@ -1,4 +1,4 @@
-export const OrderedList = ({ color }: { color: string }) => {
+export const OrderedList = ({ color = "primary" }: { color?: string }) => {
   const getColor = `hsl(var(--${color}))`
 
   return (

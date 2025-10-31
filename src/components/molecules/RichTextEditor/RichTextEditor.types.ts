@@ -1,4 +1,5 @@
 import type { Editor } from "@tiptap/react"
+import type { MouseEvent } from "react" // Importar o MouseEvent
 
 /**
  * Define os botões de controle disponíveis na toolbar.
@@ -8,20 +9,20 @@ export type RichTextControl =
   | "bold"
   | "italic"
   | "strike"
-  | "underline" // Adicionado da imagem
+  | "underline"
   | "paragraph"
-  | "heading-1" // A imagem mostra 'Normal text' (select)
+  | "heading-1"
   | "heading-2"
   | "heading-3"
   | "bulletList"
   | "orderedList"
   | "blockquote"
   | "|"
-  | "code" // O </> da imagem
+  | "code"
   | "undo"
   | "redo"
-  | "link" // O ícone de link da imagem
-  | "clear" // O ícone 'format_clear' da imagem
+  | "link"
+  | "clear"
 
 export interface RichTextProps {
   /**
@@ -70,7 +71,10 @@ export interface RichTextToolbarProps {
 
 export interface ToolbarButtonProps {
   icon: string
-  onClick: () => void
+  // --- ALTERAÇÃO AQUI ---
+  // onClick: () => void
+  onMouseDown: (event: MouseEvent<HTMLButtonElement>) => void
+  // --- FIM DA ALTERAÇÃO ---
   isActive?: boolean
   disabled?: boolean
 }

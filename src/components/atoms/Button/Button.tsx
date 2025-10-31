@@ -11,6 +11,7 @@ export const Button = ({
   iconOnly = false,
   disabled = false,
   onClick,
+  ...props
 }: ButtonProps) => {
   return (
     <button
@@ -23,6 +24,7 @@ export const Button = ({
         disabled,
         size,
       })}
+      {...props}
     >
       {icon && <Icon name={icon} />}
 

@@ -35,17 +35,11 @@ export const Select = ({
       className={getWrapperStyles(containerClassName)}
       ref={wrapperRef}
     >
-      {/* 1. Label */}
       {label && (
-        // <label
-        //   htmlFor={id}
-        //   className={getLabelStyles()}
-        // >
-        //   {label}
-        // </label>
         <Text
           as="label"
           variant="label"
+          htmlFor={id}
         >
           {label}
         </Text>

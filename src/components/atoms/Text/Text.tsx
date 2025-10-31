@@ -1,12 +1,21 @@
+import type { ElementType } from "react"
 import type { TextProps } from "./Text.types"
 import { getTextStyles } from "./Text.styles"
 
-export const Text = ({
-  as: Component = "p",
+export const Text = <C extends ElementType = "p">({
+  as,
   variant = "body",
   children,
-}: TextProps) => {
+  ...props
+}: TextProps<C>) => {
+  const Component = as || "p"
+
   return (
-    <Component className={getTextStyles({ variant })}>{children}</Component>
+    <Component
+      className={getTextStyles({ variant })}
+      {...props}
+    >
+      {children}
+    </Component>
   )
 }

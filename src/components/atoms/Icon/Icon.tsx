@@ -1,9 +1,9 @@
 import type { IconProps } from "./Icon.types"
 import { OrderedList } from "./svg-icons"
 
-export const Icon = ({ name, color = "primary" }: IconProps) => {
+export const Icon = ({ name, color }: IconProps) => {
   if (name === "list-ol") {
-    return <OrderedList color={color} />
+    return <OrderedList color={color ? color : "primary"} />
   } else {
     return (
       <i

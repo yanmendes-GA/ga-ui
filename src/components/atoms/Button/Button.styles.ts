@@ -14,7 +14,7 @@ export const getButtonStyles = ({
   size = "default",
 }: ButtonStyleProps) => {
   return cn(
-    "inline-flex h-[56px] px-[32px] items-center justify-center gap-[10px] rounded-[8px] transition-all disabled:opacity-50 disabled:cursor-not-allowed font-bold",
+    "inline-flex h-[56px] px-[32px] items-center justify-center gap-[10px] rounded-[8px] transition-all disabled:opacity-50 disabled:cursor-not-allowed font-bold border border-transparent",
 
     {
       "bg-gradient-to-t from-primary to-primary-400 text-primary-100 hover:shadow-button-primary active:from-primary-400 active:to-primary disabled:hover:shadow-none":

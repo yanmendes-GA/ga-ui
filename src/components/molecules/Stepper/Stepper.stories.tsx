@@ -15,7 +15,7 @@ const meta: Meta<typeof Stepper> = {
   },
   decorators: [
     Story => (
-      <div className="w-[200px]">
+      <div className="w-[200px] max-w-[700px]">
         <Story />
       </div>
     ),

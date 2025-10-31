@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, type MouseEvent } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
-import Underline from "@tiptap/extension-underline" // Precisamos da extensão
-import Link from "@tiptap/extension-link" // Precisamos da extensão
+import Underline from "@tiptap/extension-underline"
+import Link from "@tiptap/extension-link"
 import { Text } from "@/atoms/Text"
 
 import type { RichTextProps, RichTextControl } from "./RichTextEditor.types"
@@ -43,9 +43,7 @@ export const RichTextEditor = ({
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({
-        // Configurações do starter kit (ex: desabilitar 'bold' se não quisermos)
-      }),
+      StarterKit.configure({}),
       Underline,
       Link.configure({
         openOnClick: false,
@@ -62,18 +60,29 @@ export const RichTextEditor = ({
     onSelectionUpdate: () => {
       setSelectionState(s => s + 1)
     },
+    editorProps: {
+      attributes: {
+        id: id,
+      },
+    },
   })
+
+  const handleLabelClick = (event: MouseEvent<HTMLLabelElement>) => {
+    event.preventDefault()
+    editor?.chain().focus().run()
+  }
 
   return (
     <div className={getWrapperStyles()}>
       {label && (
-        // <label
-        //   htmlFor={id}
-        //   className={getLabelStyles()}
-        // >
-        //   {label}
-        // </label>
-        <Text variant="label">{label}</Text>
+        <Text
+          as="label"
+          variant="label"
+          onMouseDown={handleLabelClick}
+          htmlFor={id}
+        >
+          {label}
+        </Text>
       )}
 
       <div
@@ -82,7 +91,7 @@ export const RichTextEditor = ({
           variant,
           disabled,
           readonly,
-          isFocused: editor.isFocused,
+          isFocused: editor?.isFocused,
         })}
       >
         {!readonly && (
@@ -95,7 +104,6 @@ export const RichTextEditor = ({
         <hr className="border-dark-500" />
 
         <EditorContent
-          id={id}
           editor={editor}
           className={getEditorProseStyles()}
         />

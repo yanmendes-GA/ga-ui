@@ -33,6 +33,11 @@ const meta: Meta<typeof Text> = {
       control: "text",
       description: "Elemento HTML (p, span, h1, h2, etc.)",
     },
+    htmlFor: {
+      control: "text",
+      description: "HTML 'for' attribute (usado quando 'as' é 'label')",
+      if: { arg: "as", eq: "label" },
+    },
   },
   args: {
     children: "The quick brown fox jumps over the lazy dog",
@@ -82,6 +87,7 @@ export const Label: Story = {
     variant: "label",
     children: "Label Text",
     as: "label",
+    htmlFor: "some-input-id",
   },
 }
 

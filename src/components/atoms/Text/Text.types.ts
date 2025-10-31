@@ -1,4 +1,4 @@
-import type { ElementType, HTMLAttributes, ReactNode } from "react"
+import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react"
 
 export type TextVariant =
   | "h1"
@@ -13,8 +13,14 @@ export type TextVariant =
   | "small"
   | "caption"
 
-export interface TextProps extends HTMLAttributes<HTMLElement> {
+// Define as props que o nosso componente Text adiciona
+export type TextOwnProps<C extends ElementType> = {
   children: ReactNode
-  as?: ElementType
+  as?: C
   variant?: TextVariant
 }
+
+// Cria as props finais, combinando as nossas com as props do elemento HTML subjacente (ex: <p>, <label>)
+// Usamos 'p' como padrão, assim como no componente.
+export type TextProps<C extends ElementType = "p"> = TextOwnProps<C> &
+  Omit<ComponentPropsWithoutRef<C>, keyof TextOwnProps<C>>

@@ -34,7 +34,10 @@ export const Stepper = ({ totalSteps, currentStep }: StepperProps) => {
           >
             <div className={getCircleStyles(state)}>
               {state === "completed" ? (
-                <Icon name="check" />
+                <Icon
+                  name="check"
+                  color="dark"
+                />
               ) : (
                 <span>{stepNumber}</span>
               )}
