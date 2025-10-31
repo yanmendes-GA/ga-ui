@@ -43,7 +43,12 @@ export const Select = ({
         // >
         //   {label}
         // </label>
-        <Text as="label">{label}</Text>
+        <Text
+          as="label"
+          variant="label"
+        >
+          {label}
+        </Text>
       )}
 
       <button

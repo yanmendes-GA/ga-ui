@@ -1,9 +1,4 @@
-import type {
-  ElementType,
-  HTMLAttributes,
-  LabelHTMLAttributes,
-  ReactNode,
-} from "react"
+import type { ElementType, HTMLAttributes, ReactNode } from "react"
 
 export type TextVariant =
   | "h1"
