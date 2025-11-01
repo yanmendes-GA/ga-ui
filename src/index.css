@@ -53,15 +53,15 @@
     @apply bg-background text-foreground;
   }
 
-  .scrollbar-hidden::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 4px;
     border-radius: 20px;
   }
-  .scrollbar-hidden::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--dark-200));
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--dark-300));
     border-radius: 20px;
   }
   .scrollbar-hidden {
-    scrollbar-width: 4px; /* Firefox */
+    scrollbar-width: 4px;
   }
 }

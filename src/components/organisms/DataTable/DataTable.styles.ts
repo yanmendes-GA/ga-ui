@@ -6,8 +6,8 @@ export const getWrapperStyles = ({
 }: {
   fixedHeader?: boolean
 }) => {
-  return cn("w-full overflow-hidden rounded-[8px]", {
-    "overflow-y-auto max-h-[600px]": fixedHeader,
+  return cn("w-full", {
+    "overflow-y-auto max-h-[100%]": fixedHeader,
   })
 }
 
@@ -30,6 +30,7 @@ export const getHeaderCellStyles = ({
 }) => {
   return cn(
     "text-[15px] font-semibold text-dark-200 py-2 px-4",
+    "first:rounded-tl-[10px] last:rounded-tr-[10px] first:rounded-bl-[10px] last:rounded-br-[10px]",
     {
       "text-left": align === "left" || !align,
       "text-center": align === "center",

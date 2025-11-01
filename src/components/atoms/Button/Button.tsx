@@ -28,7 +28,11 @@ export const Button = ({
     >
       {icon && <Icon name={icon} />}
 
-      {!icon && iconOnly && children && <div>{children}</div>}
+      {!iconOnly && children && <div className="text-nowrap">{children}</div>}
+
+      {iconOnly && !icon && children && (
+        <div className="text-nowrap">{children}</div>
+      )}
     </button>
   )
 }
