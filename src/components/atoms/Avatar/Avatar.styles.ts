@@ -10,7 +10,7 @@ const sizeClasses = {
 
 const variantClasses = {
   default: "bg-dark-500 border border-primary",
-  primary: "bg-primary",
+  primary: "bg-primary border-transparent",
 }
 
 type ButtonStyleProps = Pick<AvatarProps, "variant" | "size">
