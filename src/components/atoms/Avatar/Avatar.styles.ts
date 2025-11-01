@@ -2,10 +2,10 @@ import { cn } from "@/utils/cn"
 import type { AvatarProps } from "./Avatar.types"
 
 const sizeClasses = {
-  sm: "h-[40px] w-[40px] text-[16px]",
-  md: "h-[50px] w-[50px] text-[20px]",
-  lg: "h-[80px] w-[80px] text-[32px]",
-  xl: "h-[150px] w-[150px] text-[48px]",
+  sm: "h-[40px] w-[40px] min-w-[40px] text-[16px]",
+  md: "h-[50px] w-[50px] min-w-[50px] text-[20px]",
+  lg: "h-[80px] w-[80px] min-w-[80px] text-[32px]",
+  xl: "h-[150px] w-[150px] min-w-[150px] text-[48px]",
 }
 
 const variantClasses = {

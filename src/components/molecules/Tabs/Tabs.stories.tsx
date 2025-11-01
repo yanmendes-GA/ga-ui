@@ -7,15 +7,6 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   parameters: {
     layout: "centered",
-    // Adiciona um fundo escuro para melhor visualização,
-    // usando a cor $Dark do seu tailwind.config
-    backgrounds: {
-      default: "dark",
-      values: [
-        { name: "light", value: "#F6E5D2" }, // Primary-100
-        { name: "dark", value: "#101820" }, // Dark
-      ],
-    },
   },
   tags: ["autodocs"],
   argTypes: {

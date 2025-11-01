@@ -20,9 +20,9 @@ export const getTextWrapperStyles = () => {
 }
 
 export const getNameStyles = () => {
-  return cn("font-bold text-base text-foreground", "truncate")
+  return cn("text-[15px]", "truncate")
 }
 
 export const getRoleStyles = () => {
-  return cn("font-medium text-sm text-dark-100", "truncate")
+  return cn("italic text-[12px] text-dark-100", "truncate")
 }

@@ -7,10 +7,6 @@ const meta: Meta<typeof FileUploader> = {
   component: FileUploader,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#101820" }],
-    },
   },
   tags: ["autodocs"],
   argTypes: {

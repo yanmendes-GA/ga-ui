@@ -22,13 +22,6 @@ const meta: Meta<typeof Breadcrumb> = {
   component: Breadcrumb,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [
-        { name: "dark", value: "#101820" },
-        { name: "light", value: "#FFFFFF" },
-      ],
-    },
   },
   tags: ["autodocs"],
   argTypes: {

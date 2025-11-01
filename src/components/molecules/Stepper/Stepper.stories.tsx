@@ -6,12 +6,6 @@ const meta: Meta<typeof Stepper> = {
   component: Stepper,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [
-        { name: "dark", value: "#101820" }, //
-      ],
-    },
   },
   decorators: [
     Story => (

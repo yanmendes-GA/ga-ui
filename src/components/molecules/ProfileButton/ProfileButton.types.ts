@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react"
-import type { AvatarProps } from "@/atoms/Avatar" // Assumindo a importação do Avatar
+import type { AvatarProps } from "@/atoms/Avatar"
 
 export interface ProfileButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,7 +14,7 @@ export interface ProfileButtonProps
   /**
    * Props para o átomo Avatar (ex: initials, src).
    */
-  avatarProps: AvatarProps
+  avatarProps?: AvatarProps
   /**
    * Controla o estado desabilitado do botão.
    */

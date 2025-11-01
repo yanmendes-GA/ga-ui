@@ -1,13 +1,14 @@
 import type { ElementType } from "react"
 import type { ListItemProps } from "./ListItem.types"
-import { getListItemStyles } from "./ListItem.styles"
+import { getListItemStyles, getListItemLabelStyles } from "./ListItem.styles"
 import { Icon } from "@/atoms/Icon"
 
-export const ListItem = <T extends ElementType = "a">({ 
+export const ListItem = <T extends ElementType = "a">({
   as,
   label,
   icon,
   isActive = false,
+  iconOnly,
   to,
   onClick,
   className,
@@ -29,14 +30,13 @@ export const ListItem = <T extends ElementType = "a">({
           e.preventDefault()
         }
         if (onClick) {
-          (onClick as any)(e)
+          ;(onClick as any)(e)
         }
       }}
       {...props}
     >
       {icon && <Icon name={icon} />}
-      <span className="flex-1">{label}</span>
+      <span className={getListItemLabelStyles({ iconOnly })}>{label}</span>
     </Component>
   )
 }
-

@@ -11,7 +11,7 @@ import { Icon } from "@/atoms/Icon"
 export const ProfileButton = ({
   name,
   role,
-  avatarProps,
+  avatarProps = { size: "sm" },
   disabled = false,
   ...rest
 }: ProfileButtonProps) => {
@@ -27,6 +27,7 @@ export const ProfileButton = ({
         src={avatarProps?.src}
         variant={avatarProps?.variant}
         size={avatarProps?.size}
+        fallback={avatarProps?.fallback}
       />
 
       <div className={getTextWrapperStyles()}>

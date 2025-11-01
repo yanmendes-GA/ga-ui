@@ -8,10 +8,6 @@ const meta: Meta<typeof CardListItem> = {
   component: CardListItem,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#101820" }],
-    },
   },
   tags: ["autodocs"],
   argTypes: {

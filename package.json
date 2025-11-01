@@ -36,13 +36,13 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\""
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@tiptap/extension-link": "^3.10.1",
     "@tiptap/extension-placeholder": "^3.10.1",
     "@tiptap/extension-underline": "^3.10.1",
     "@tiptap/react": "^3.10.1",
-    "@tiptap/starter-kit": "^3.10.1"
+    "@tiptap/starter-kit": "^3.10.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.2.6",

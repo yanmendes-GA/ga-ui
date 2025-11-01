@@ -11,10 +11,6 @@ const meta: Meta<typeof Toolbar> = {
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#101820" }],
-    },
   },
   argTypes: {
     breadcrumbItems: {

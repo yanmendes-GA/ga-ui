@@ -12,7 +12,7 @@ export const Avatar = ({
   const { imageError, handleImageError, getInitials } = useAvatar()
 
   const shouldShowFallback = !src || imageError
-  const displayFallback = fallback || getInitials(alt)
+  const displayFallback = fallback || getInitials(alt ? alt : "")
 
   return (
     <div className={getAvatarWrapperStyles({ size, variant })}>
