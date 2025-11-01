@@ -12,7 +12,7 @@ export const getSidebarStyles = ({
   isCollapsed = false,
 }: SidebarStyleProps) => {
   return cn(
-    "w-[280px] p-4 flex h-screen flex-col border border-transparent border-r-dark-400 bg-dark transition-all duration-300 ease-in-out",
+    "w-[280px] bg-sidebar-background bg-cover bg-center p-4 flex h-screen flex-col border border-transparent border-r-dark-400 transition-all duration-300 ease-in-out",
     {
       "w-[80px] p-[8px]": isCollapsed,
     },
@@ -31,8 +31,20 @@ export const getSidebarHeaderStyles = ({
   })
 }
 
+export const getSidebarToggleButtonStyles = ({
+  isCollapsed,
+}: SidebarStyleProps) => {
+  return cn("absolute right-[-25px] top-[50px]", {
+    "right-[-20px]": isCollapsed,
+  })
+}
+
 export const getSidebarNavStyles = () => {
   return cn("flex flex-col gap-2 mt-10 overflow-hidden")
+}
+
+export const getSidebarListStyles = ({ isCollapsed }: SidebarStyleProps) => {
+  return cn("flex flex-col gap-3 mt-3", { "items-center": isCollapsed })
 }
 
 export const getSidebarFooterStyles = () => {

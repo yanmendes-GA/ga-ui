@@ -6,7 +6,7 @@ type StyleProps = {
 
 export const getProfileButtonStyles = ({ disabled }: StyleProps) => {
   return cn(
-    "flex w-full items-center gap-3 hover:bg-dark-400 h-[76px] p-[10px] rounded-[8px] bg-dark-500 transition-colors text-dark-100",
+    "flex w-full items-center gap-3 hover:bg-dark-400 h-full p-[10px] rounded-[8px] bg-dark-500 transition-colors text-dark-100",
     {
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400":
         !disabled,

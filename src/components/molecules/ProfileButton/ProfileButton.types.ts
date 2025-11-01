@@ -19,4 +19,8 @@ export interface ProfileButtonProps
    * Controla o estado desabilitado do botão.
    */
   disabled?: boolean
+  /**
+   * Controla o estado recolhido do botão dentro do Sidebar.
+   */
+  isCollapsed?: boolean
 }

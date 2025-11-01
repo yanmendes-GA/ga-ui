@@ -56,6 +56,7 @@ export default {
 
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
+        "sidebar-background": "url('@/assets/images/sidebar-bg.png')",
       },
 
       boxShadow: {

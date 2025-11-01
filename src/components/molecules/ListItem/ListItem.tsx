@@ -10,8 +10,8 @@ export const ListItem = <T extends ElementType = "a">({
   isActive = false,
   iconOnly,
   to,
+  isCollapsed,
   onClick,
-  className,
   ...props
 }: ListItemProps<T>) => {
   const Component = as || "a"
@@ -21,7 +21,7 @@ export const ListItem = <T extends ElementType = "a">({
   return (
     <Component
       href={to}
-      className={getListItemStyles({ isActive, isDisabled, className })}
+      className={getListItemStyles({ isActive, isDisabled, isCollapsed })}
       aria-current={isActive ? "page" : undefined}
       onClick={(e: React.MouseEvent) => {
         e.stopPropagation()
@@ -36,7 +36,7 @@ export const ListItem = <T extends ElementType = "a">({
       {...props}
     >
       {icon && <Icon name={icon} />}
-      <span className={getListItemLabelStyles({ iconOnly })}>{label}</span>
+      <span className={getListItemLabelStyles({ isCollapsed })}>{label}</span>
     </Component>
   )
 }

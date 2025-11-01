@@ -13,6 +13,7 @@ export const ProfileButton = ({
   role,
   avatarProps = { size: "sm" },
   disabled = false,
+  isCollapsed = false,
   ...rest
 }: ProfileButtonProps) => {
   return (
@@ -30,12 +31,14 @@ export const ProfileButton = ({
         fallback={avatarProps?.fallback}
       />
 
-      <div className={getTextWrapperStyles()}>
-        <span className={getNameStyles()}>{name}</span>
-        <span className={getRoleStyles()}>{role}</span>
-      </div>
+      {!isCollapsed && (
+        <div className={getTextWrapperStyles()}>
+          <span className={getNameStyles()}>{name}</span>
+          <span className={getRoleStyles()}>{role}</span>
+        </div>
+      )}
 
-      <Icon name="angles-up-down" />
+      {!isCollapsed && <Icon name="angles-up-down" />}
     </button>
   )
 }

@@ -32,9 +32,7 @@ export interface SidebarProps {
   /** Um objeto contendo os dados do perfil do usuário */
   profile: SidebarProfile
   /** A URL ativa no momento, para destacar o ListItem correspondente */
-  activeHref?: string
-  /** Controla o estado de recolhimento do sidebar */
-  isCollapsed?: boolean
-  /** Função chamada ao clicar no botão de recolher/expandir */
-  onToggleCollapse: () => void
+  activeLink?: string
+  /** Controla quando o sidebar é recolhível */
+  collapsable?: boolean
 }

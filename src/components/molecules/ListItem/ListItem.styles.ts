@@ -3,13 +3,13 @@ import { cn } from "@/utils/cn"
 type ListItemStyleProps = {
   isActive?: boolean
   isDisabled?: boolean
-  className?: string
+  isCollapsed?: boolean
 }
 
 export const getListItemStyles = ({
   isActive = false,
   isDisabled = false,
-  className,
+  isCollapsed = false,
 }: ListItemStyleProps) => {
   return cn(
     "flex items-center justify-center flex-nowrap text-nowrap h-[40px] w-full px-[20px] gap-3 rounded-[6px] font-medium text-base transition-colors duration-200 text-dark-100 hover:bg-dark-500",
@@ -19,10 +19,12 @@ export const getListItemStyles = ({
 
     isActive && "bg-dark-500 text-primary border border-primary font-bold",
 
-    className,
+    isCollapsed && "w-[40px] px-[10px]",
   )
 }
 
-export const getListItemLabelStyles = ({ iconOnly = false }) => {
-  return cn("flex-1")
+export const getListItemLabelStyles = ({
+  isCollapsed = false,
+}: Pick<ListItemStyleProps, "isCollapsed">) => {
+  return cn("flex-1", { "sr-only": isCollapsed })
 }

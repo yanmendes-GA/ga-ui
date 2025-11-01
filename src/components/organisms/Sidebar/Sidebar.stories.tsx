@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import React, { useState } from "react"
 import { Sidebar } from "./Sidebar"
 import type { SidebarNavItem, SidebarProfile } from "./Sidebar.types"
+// @ts-ignore
 import logoSmall from "../../../../public/symbol.png"
+// @ts-ignore
 import logoFull from "../../../../public/horizontal-logo.png"
 
 // Mock dos dados de Navegação (baseado na imagem)
@@ -21,13 +22,18 @@ const mockProfile: SidebarProfile = {
   avatarFallback: "GA",
 }
 
+const mockProfileWithAvatar: SidebarProfile = {
+  ...mockProfile,
+  avatarSrc: "https://github.com/garridothedev.png",
+}
+
 // --- Configuração do Storybook ---
 
 const meta: Meta<typeof Sidebar> = {
   title: "Organisms/Sidebar",
   component: Sidebar,
   parameters: {
-    layout: "centered", // O Sidebar ocupa a tela inteira
+    layout: "fullscreen", // O Sidebar ocupa a tela inteira
     docs: {
       description: {
         component:
@@ -37,69 +43,89 @@ const meta: Meta<typeof Sidebar> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    logoFull: { control: "text" },
-    logoSmall: { control: "text" },
-    navItems: { control: "object" },
-    profile: { control: "object" },
-    activeHref: { control: "text" },
-    isCollapsed: { control: "boolean" },
-    onToggleCollapse: { action: "onToggleCollapse" },
+    logoFull: {
+      control: "text",
+      description: "O logo a ser exibido quando o sidebar está expandido.",
+    },
+    logoSmall: {
+      control: "text",
+      description: "O logo a ser exibido quando o sidebar está recolhido.",
+    },
+    navItems: {
+      control: "object",
+      description: "Um array de objetos de item de navegação.",
+    },
+    profile: {
+      control: "object",
+      description: "Um objeto contendo os dados do perfil do usuário.",
+    },
+    activeLink: {
+      control: "select",
+      options: mockNavItems.map(item => item.href),
+      description:
+        "A URL ativa no momento, para destacar o `ListItem` correspondente.",
+    },
+    collapsable: {
+      control: "boolean",
+      description: "Controla se o sidebar é recolhível.",
+    },
   },
   args: {
     logoFull: (
       <img
         width="100%"
         src={logoFull}
-      ></img>
+        alt="Logo"
+      />
     ),
     logoSmall: (
       <img
         width="100%"
         src={logoSmall}
-      ></img>
+        alt="Small Logo"
+      />
     ),
     navItems: mockNavItems,
     profile: mockProfile,
+    collapsable: true,
   },
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-/**
- * Template interativo que gerencia o estado 'isCollapsed'
- * para demonstrar a funcionalidade de recolher/expandir.
- */
-const InteractiveSidebarTemplate: Story["render"] = args => {
-  const [isCollapsed, setIsCollapsed] = useState(args.isCollapsed || false)
-
-  return (
-    <Sidebar
-      logoFull={<img src={logoFull}></img>}
-      logoSmall={<img src={logoSmall}></img>}
-      navItems={mockNavItems}
-      profile={mockProfile}
-      {...args}
-      isCollapsed={isCollapsed}
-      onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
-    />
-  )
-}
-
 export const Default: Story = {
   name: "Expandido (Padrão)",
-  render: InteractiveSidebarTemplate,
   args: {
-    isCollapsed: false,
     activeHref: "/dashboard",
   },
 }
 
 export const Collapsed: Story = {
   name: "Recolhido",
-  render: InteractiveSidebarTemplate,
   args: {
-    isCollapsed: true,
-    activeHref: "/dashboard",
+    ...Default.args,
+  },
+  // @ts-ignore
+  play: async ({ canvasElement }) => {
+    const { getByRole } = require("@storybook/testing-library")
+    const canvas = getByRole(canvasElement, "button")
+    canvas.click()
+  },
+}
+
+export const WithAvatar: Story = {
+  name: "Com Avatar",
+  args: {
+    ...Default.args,
+    profile: mockProfileWithAvatar,
+  },
+}
+
+export const NotCollapsable: Story = {
+  name: "Não Recolhível",
+  args: {
+    ...Default.args,
+    collapsable: false,
   },
 }
