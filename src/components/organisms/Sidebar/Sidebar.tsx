@@ -1,11 +1,4 @@
-import {
-  getSidebarStyles,
-  getSidebarHeaderStyles,
-  getSidebarNavStyles,
-  getSidebarFooterStyles,
-  getSidebarListStyles,
-  getSidebarToggleButtonStyles,
-} from "./Sidebar.styles"
+import { getSidebarStyles } from "./Sidebar.styles"
 import type { SidebarProps } from "./Sidebar.types"
 import { ListItem } from "../../molecules/ListItem"
 import { ProfileButton } from "../../molecules/ProfileButton"
@@ -21,16 +14,16 @@ export const Sidebar = ({
   collapsable = false,
 }: SidebarProps) => {
   const { isCollapsed, toggleCollapse } = useSidebar()
+  const styles = getSidebarStyles({ isCollapsed })
 
   return (
-    <aside className={getSidebarStyles({ isCollapsed })}>
+    <section className={styles.root}>
       <div className="flex flex-1 flex-col">
-        <header className={getSidebarHeaderStyles({ isCollapsed })}>
+        <header className={styles.header}>
           <div>{isCollapsed ? logoSmall : logoFull}</div>
           {collapsable && (
-            <div className={getSidebarToggleButtonStyles({ isCollapsed })}>
+            <div className={styles.toggleButton}>
               <Button
-                variant="default"
                 iconOnly
                 size="xs"
                 icon={isCollapsed ? "angle-circle-right" : "angle-circle-left"}
@@ -40,8 +33,8 @@ export const Sidebar = ({
           )}
         </header>
 
-        <nav className={getSidebarNavStyles()}>
-          <ul className={getSidebarListStyles({ isCollapsed })}>
+        <nav className={styles.navigation}>
+          <ul className={styles.list}>
             {navItems.map(item => (
               <li key={item.href}>
                 <ListItem
@@ -57,7 +50,7 @@ export const Sidebar = ({
         </nav>
       </div>
 
-      <footer className={getSidebarFooterStyles()}>
+      <footer className={styles.footer}>
         <ProfileButton
           name={profile.name}
           role={profile.role}
@@ -65,6 +58,6 @@ export const Sidebar = ({
           isCollapsed={isCollapsed}
         />
       </footer>
-    </aside>
+    </section>
   )
 }

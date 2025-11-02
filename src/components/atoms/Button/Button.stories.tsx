@@ -22,7 +22,7 @@ const meta: Meta<typeof Button> = {
     },
     variant: {
       control: { type: "select" },
-      options: ["default", "outline", "ghost"],
+      options: ["outline", "ghost"],
     },
     iconOnly: {
       control: "boolean",
@@ -39,7 +39,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     children: "Default Button",
-    variant: "default",
     disabled: false,
     icon: "filters",
     iconSide: "left",
@@ -69,7 +68,6 @@ export const Ghost: Story = {
 export const IconRight: Story = {
   args: {
     children: "Icon Right",
-    variant: "default",
     disabled: false,
     icon: "arrow_forward",
     iconSide: "right",
@@ -78,7 +76,6 @@ export const IconRight: Story = {
 
 export const IconOnly: Story = {
   args: {
-    variant: "default",
     iconOnly: true,
     disabled: false,
     icon: "filters",
@@ -106,7 +103,6 @@ export const IconOnlyGhost: Story = {
 export const Disabled: Story = {
   args: {
     children: "Disabled Button",
-    variant: "default",
     disabled: true,
     icon: "filters",
   },

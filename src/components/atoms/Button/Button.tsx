@@ -6,7 +6,7 @@ export const Button = ({
   children,
   icon,
   iconSide = "left",
-  variant = "default",
+  variant,
   size = "default",
   iconOnly = false,
   disabled = false,
