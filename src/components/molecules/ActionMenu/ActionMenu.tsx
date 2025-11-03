@@ -1,7 +1,7 @@
 import { cloneElement } from "react"
 import type { ActionMenuItem, ActionMenuProps } from "./ActionMenu.types"
 import { useActionMenu } from "./useActionMenu"
-import { getWrapperStyles, getActionMenuPanelStyles } from "./ActionMenu.styles"
+import { getActionMenuStyles } from "./ActionMenu.styles"
 import { ListItem } from "@/molecules/ListItem"
 
 export const ActionMenu = <T extends ActionMenuItem>({
@@ -12,12 +12,10 @@ export const ActionMenu = <T extends ActionMenuItem>({
 }: ActionMenuProps<T>) => {
   const { isOpen, toggleMenu, wrapperRef, menuId, getTriggerProps } =
     useActionMenu()
+  const styles = getActionMenuStyles({ side, align })
 
   return (
-    <div
-      ref={wrapperRef}
-      className={getWrapperStyles()}
-    >
+    <div ref={wrapperRef} className={styles.wrapper}>
       {/* Clonamos o trigger para injetar as props de acessibilidade 
         e o nosso handler de onClick.
       */}
@@ -29,10 +27,7 @@ export const ActionMenu = <T extends ActionMenuItem>({
           role="menu"
           aria-orientation="vertical"
           aria-labelledby={trigger.props.id}
-          className={getActionMenuPanelStyles({
-            side,
-            align,
-          })}
+          className={styles.panel}
         >
           <ul className="flex flex-col">
             {items.map(item => (

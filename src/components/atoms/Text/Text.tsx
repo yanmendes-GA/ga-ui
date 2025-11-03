@@ -9,12 +9,10 @@ export const Text = <C extends ElementType = "p">({
   ...props
 }: TextProps<C>) => {
   const Component = as || "p"
+  const styles = getTextStyles({ variant })
 
   return (
-    <Component
-      className={getTextStyles({ variant })}
-      {...props}
-    >
+    <Component className={styles.text} {...props}>
       {children}
     </Component>
   )

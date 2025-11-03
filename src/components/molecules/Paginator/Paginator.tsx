@@ -1,5 +1,5 @@
 import type { PaginatorProps } from "./Paginator.types"
-import { getPaginatorStyles, getPaginatorItemStyles } from "./Paginator.styles"
+import { getPaginatorStyles } from "./Paginator.styles"
 import { usePaginator, DOTS } from "./usePaginator"
 import { Button } from "@/atoms/Button"
 import { cn } from "@/utils/cn"
@@ -36,6 +36,8 @@ export const Paginator = ({
     }
   }
 
+  const styles = getPaginatorStyles()
+
   const prevButton = (
     <Button
       iconOnly
@@ -63,7 +65,7 @@ export const Paginator = ({
     <nav
       role="navigation"
       aria-label="Paginação"
-      className={cn(getPaginatorStyles(), className)}
+      className={cn(styles.paginator, className)}
       {...props}
     >
       {prevButton}
@@ -72,12 +74,7 @@ export const Paginator = ({
         const key = `${pageNumber}-${index}`
 
         if (pageNumber === DOTS) {
-          return (
-            <Icon
-              color="dark-300"
-              name="menu-dots"
-            />
-          )
+          return <Icon color="dark-300" name="menu-dots" />
         }
 
         const isCurrent = pageNumber === currentPage

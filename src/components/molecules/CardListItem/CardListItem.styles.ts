@@ -16,11 +16,13 @@ const colsMap: Record<GridColsCount, string> = {
   12: "grid-cols-12",
 }
 
-export const getWrapperStyles = (cols?: GridColsCount) => {
+export const getCardListItemStyles = (cols?: GridColsCount) => {
   const gridLayout = colsMap[cols ? cols : 5]
 
-  return cn(
-    "grid items-center gap-x-6 w-full h-[104px] px-6 py-4 bg-dark-400 rounded-[12px]",
-    gridLayout,
-  )
+  return {
+    wrapper: cn(
+      "grid items-center gap-x-6 w-full h-[104px] px-6 py-4 bg-dark-400 rounded-[12px]",
+      gridLayout,
+    ),
+  }
 }

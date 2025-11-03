@@ -1,5 +1,5 @@
 import type { SwitchProps } from "./Switch.types"
-import { getSwitchTrackStyles, getSwitchThumbStyles } from "./Switch.styles"
+import { getSwitchStyles } from "./Switch.styles"
 
 export const Switch = ({
   checked,
@@ -14,6 +14,8 @@ export const Switch = ({
     }
   }
 
+  const styles = getSwitchStyles({ checked, disabled })
+
   return (
     <button
       {...props}
@@ -23,12 +25,9 @@ export const Switch = ({
       aria-checked={checked}
       disabled={disabled}
       onClick={handleToggle}
-      className={getSwitchTrackStyles({ checked, disabled })}
+      className={styles.track}
     >
-      <span
-        aria-hidden="true"
-        className={getSwitchThumbStyles({ checked, disabled })}
-      />
+      <span aria-hidden="true" className={styles.thumb} />
     </button>
   )
 }

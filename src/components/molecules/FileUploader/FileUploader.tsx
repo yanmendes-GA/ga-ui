@@ -1,5 +1,5 @@
 import type { FileUploaderProps } from "./FileUploader.types"
-import { getUploaderStyles } from "./FileUploader.styles"
+import { getFileUploaderStyles } from "./FileUploader.styles"
 import { useFileUploader } from "./useFileUploader"
 import { Icon } from "@/atoms/Icon"
 import { Button } from "@/atoms/Button"
@@ -27,6 +27,12 @@ export const FileUploader = ({
     onView,
     acceptedFileTypes,
     disabled,
+  })
+
+  const styles = getFileUploaderStyles({
+    isDragging,
+    disabled,
+    hasFile: !!file,
   })
 
   // --- Renderização ---
@@ -70,15 +76,7 @@ export const FileUploader = ({
   )
 
   return (
-    <div
-      {...props}
-      {...getRootProps()}
-      className={getUploaderStyles({
-        isDragging,
-        disabled,
-        hasFile: !!file,
-      })}
-    >
+    <div {...props} {...getRootProps()} className={styles.uploader}>
       <input {...getInputProps()} />
 
       {file ? renderSelectedFileState() : renderDropzoneState()}

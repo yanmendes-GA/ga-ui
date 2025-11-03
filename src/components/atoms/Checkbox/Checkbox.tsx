@@ -5,6 +5,8 @@ import { Icon } from "@/atoms/Icon"
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ checked = false, disabled = false, id, ...props }, ref) => {
+    const styles = getCheckboxStyles({ disabled, checked })
+
     return (
       <label htmlFor={id}>
         <input
@@ -17,7 +19,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           {...props}
         />
 
-        <div className={getCheckboxStyles({ disabled, checked })}>
+        <div className={styles.checkbox}>
           {checked && <Icon name="check" />}
         </div>
       </label>

@@ -1,11 +1,5 @@
 import type { InputProps } from "./Input.types"
-import {
-  getWrapperStyles,
-  getLabelStyles,
-  getInputContainerStyles,
-  getIconStyles,
-  getInputStyles,
-} from "./Input.styles"
+import { getInputStyles } from "./Input.styles"
 import { Icon } from "@/atoms/Icon"
 export const Input = ({
   id,
@@ -19,28 +13,26 @@ export const Input = ({
   readonly = false,
   ...rest
 }: InputProps) => {
+  const styles = getInputStyles({
+    variant,
+    disabled,
+    iconLeft,
+    readonly,
+    clickable: onIconClick !== undefined,
+  })
+
   return (
-    <div className={getWrapperStyles()}>
+    <div className={styles.wrapper}>
       {label && (
-        <label
-          htmlFor={id}
-          className={getLabelStyles()}
-        >
+        <label htmlFor={id} className={styles.label}>
           {label}
         </label>
       )}
 
-      <div
-        className={getInputContainerStyles({
-          variant,
-          disabled,
-          iconLeft,
-          readonly,
-        })}
-      >
+      <div className={styles.inputContainer}>
         <input
           id={id}
-          className={getInputStyles({ variant, disabled, readonly })}
+          className={styles.input}
           disabled={disabled}
           type={isPassword ? "password" : "text"}
           {...rest}
@@ -51,11 +43,7 @@ export const Input = ({
             type="button"
             onClick={onIconClick}
             disabled={disabled}
-            className={getIconStyles({
-              variant,
-              disabled,
-              clickable: onIconClick !== undefined,
-            })}
+            className={styles.icon}
             aria-label="Ação do Input"
           >
             <Icon name={iconRight || iconLeft || ""} />

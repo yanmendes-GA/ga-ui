@@ -1,11 +1,6 @@
 import { useState, type FocusEvent } from "react"
 import type { FieldsetProps } from "./Fieldset.types"
-import {
-  getFieldsetStyles,
-  getLegendStyles,
-  getLegendLabelStyles,
-  getLegendBgStyles,
-} from "./Fieldset.styles"
+import { getFieldsetStyles } from "./Fieldset.styles"
 
 export const Fieldset = ({
   legend,
@@ -27,17 +22,19 @@ export const Fieldset = ({
     }
   }
 
+  const styles = getFieldsetStyles({ focused })
+
   return (
     <fieldset
       onFocus={handleFocus}
       onBlur={handleBlur}
-      className={getFieldsetStyles({ focused })}
+      className={styles.fieldset}
       {...props}
     >
-      <legend className={getLegendStyles()}>
-        <span className={getLegendLabelStyles({ focused })}>{legend}</span>
+      <legend className={styles.legend}>
+        <span className={styles.legendLabel}>{legend}</span>
 
-        <div className={getLegendBgStyles({ focused })} />
+        <div className={styles.legendBg} />
       </legend>
 
       {children}

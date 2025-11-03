@@ -20,5 +20,7 @@ const variantStyles = {
 }
 
 export const getTextStyles = ({ variant = "body" }: TextStyleProps) => {
-  return cn("text-dark-100", variantStyles[variant])
+  return {
+    text: cn("text-dark-100", variantStyles[variant]),
+  }
 }

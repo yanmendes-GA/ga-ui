@@ -15,15 +15,16 @@ const variantClasses = {
 
 type ButtonStyleProps = Pick<AvatarProps, "variant" | "size">
 
-export const getAvatarWrapperStyles = ({
+export const getAvatarStyles = ({
   variant = "default",
   size = "md",
 }: ButtonStyleProps) => {
-  return cn(
-    "hover:shadow-elegant relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-primary-100 transition-all duration-300",
-    sizeClasses[size],
-    variantClasses[variant],
-  )
+  return {
+    wrapper: cn(
+      "hover:shadow-elegant relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-primary-100 transition-all duration-300",
+      sizeClasses[size],
+      variantClasses[variant],
+    ),
+    image: "h-full w-full object-cover",
+  }
 }
-
-export const getAvatarImageStyles = () => "h-full w-full object-cover"

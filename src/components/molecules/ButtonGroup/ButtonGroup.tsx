@@ -1,11 +1,6 @@
 import type { ButtonGroupProps } from "./ButtonGroup.types"
 import { useButtonGroup } from "./useButtonGroup"
-import {
-  getGroupStyles,
-  getButtonStyles,
-  getContentStyles,
-  getBackgroundStyles,
-} from "./ButtonGroup.styles"
+import { getButtonGroupStyles } from "./ButtonGroup.styles"
 import { Icon } from "@/atoms/Icon"
 
 export const ButtonGroup = ({
@@ -27,11 +22,12 @@ export const ButtonGroup = ({
 
   return (
     <div
-      className={getGroupStyles(className)}
+      className={getButtonGroupStyles({ className }).group}
       role={multiple ? "group" : "radiogroup"}
     >
       {items.map((item, index) => {
         const selected = isSelected(item)
+        const styles = getButtonGroupStyles({ variant, index, isSelected: selected })
         return (
           <button
             key={item.value}
@@ -39,9 +35,9 @@ export const ButtonGroup = ({
             role={multiple ? "checkbox" : "radio"}
             aria-checked={selected}
             onClick={() => handleSelect(item)}
-            className={getButtonStyles({ variant, index })}
+            className={styles.button}
           >
-            <span className={getContentStyles(selected)}>
+            <span className={styles.content}>
               {variant === "icon" && item.iconName && (
                 <Icon name={item.iconName} />
               )}
@@ -50,10 +46,7 @@ export const ButtonGroup = ({
             </span>
 
             <div
-              className={getBackgroundStyles({
-                isSelected: selected,
-                variant,
-              })}
+              className={styles.background}
               aria-hidden="true"
             />
           </button>

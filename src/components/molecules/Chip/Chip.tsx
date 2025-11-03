@@ -7,11 +7,9 @@ export const Chip = ({
   variant = "default",
   ...props
 }: ChipProps) => {
+  const styles = getChipStyles({ variant })
   return (
-    <div
-      className={cn(getChipStyles({ variant }))}
-      {...props}
-    >
+    <div className={cn(styles.chip)} {...props}>
       {children}
     </div>
   )
