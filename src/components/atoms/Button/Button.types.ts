@@ -1,8 +1,6 @@
-import type { ButtonHTMLAttributes } from "react"
-
 export type ButtonVariant = "outline" | "ghost"
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
   children?: React.ReactNode
   icon?: string
   iconSide?: "left" | "right"
@@ -10,4 +8,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   iconOnly?: boolean
   disabled?: boolean
+  onClick?: () => void
 }

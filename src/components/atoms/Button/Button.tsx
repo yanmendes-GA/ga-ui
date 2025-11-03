@@ -11,7 +11,6 @@ export const Button = ({
   iconOnly = false,
   disabled = false,
   onClick,
-  ...props
 }: ButtonProps) => {
   const styles = getButtonStyles({
     variant,
@@ -22,7 +21,12 @@ export const Button = ({
   })
 
   return (
-    <button onClick={onClick} disabled={disabled} className={styles.button} {...props}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={styles.button}
+      type="button"
+    >
       {icon && <Icon name={icon} />}
 
       {!iconOnly && children && <div className="text-nowrap">{children}</div>}
