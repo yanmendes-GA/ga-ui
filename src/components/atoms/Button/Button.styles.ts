@@ -24,10 +24,10 @@ export const getButtonStyles = ({
       "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
 
       {
-        "border border-primary text-primary bg-transparent hover:bg-primary/10 active:bg-primary/20":
+        "border border-primary text-primary bg-transparent hover:bg-primary/10 active:bg-primary/20 hover:shadow-none":
           variant === "outline",
 
-        "text-primary bg-transparent hover:bg-primary/10 active:bg-primary/20":
+        "text-primary bg-transparent hover:bg-primary/10 active:bg-primary/20 hover:shadow-none":
           variant === "ghost",
       },
 

@@ -6,11 +6,6 @@ export const getToolbarStyles = () => {
   )
 }
 
-/**
- * Estilos para o container (slot) da direita.
- */
 export const getToolbarRightSlotStyles = () => {
-  return cn(
-    "flex flex-1 items-center gap-4", // Gap entre os itens da direita
-  )
+  return cn("flex items-center gap-4")
 }
