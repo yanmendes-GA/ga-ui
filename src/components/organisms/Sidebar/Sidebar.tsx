@@ -4,6 +4,7 @@ import { ListItem } from "../../molecules/ListItem"
 import { ProfileButton } from "../../molecules/ProfileButton"
 import { Button } from "../../atoms/Button"
 import { useSidebar } from "./useSidebar"
+import sidebarBg from "@/assets/images/sidebar-bg.png"
 
 export const Sidebar = ({
   logoFull,
@@ -17,7 +18,10 @@ export const Sidebar = ({
   const styles = getSidebarStyles({ isCollapsed })
 
   return (
-    <section className={styles.root}>
+    <section
+      className={styles.root}
+      style={{ backgroundImage: `url(${sidebarBg})` }}
+    >
       <div className="flex flex-1 flex-col">
         <header className={styles.header}>
           <div>{isCollapsed ? logoSmall : logoFull}</div>
