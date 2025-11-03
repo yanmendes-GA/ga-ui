@@ -6,11 +6,11 @@ export const getDashboardTemplateStyles = () => {
 
     main: cn("flex h-full flex-1 flex-col overflow-y-auto"),
 
-    sidebar: cn("h-full w-[280px] flex-shrink-0 bg-dark-500"),
+    sidebar: cn("h-full w-fit max-w-[280px] min-w-[80px] bg-dark-500"),
 
-    toolbar: cn("w-full flex-shrink-0"),
+    toolbar: cn("w-full flex-shrink-0 p-5"),
 
-    content: cn("w-full flex-1"),
+    content: cn("w-full flex-1 p-5"),
 
     footer: cn("w-full flex-shrink-0"),
   }

@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>
 // --- Mocks para simular os organismos ---
 
 const MockSidebar = () => (
-  <div className="relative h-full w-full p-6 text-white">
+  <div className="relative h-full w-[full] p-6 text-white">
     <div className="h-10 w-32 rounded bg-dark-300 mb-8 opacity-50" />{" "}
     {/* Logo */}
     <div className="h-8 w-full rounded bg-dark-300 mb-4 opacity-50" />{" "}
