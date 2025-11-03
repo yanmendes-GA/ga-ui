@@ -1,19 +1,19 @@
 import { getListItemStyles } from "./ListItem.styles"
 import { Icon } from "@/atoms/Icon"
+import type { ElementType } from "react"
+import type { ListItemProps } from "./ListItem.types"
 
-export const ListItem = <T extends ElementType = "a">(
-  {
-    as,
-    label,
-    icon,
-    isActive = false,
-    iconOnly,
-    to,
-    isCollapsed,
-    onClick,
-    ...props
-  }: ListItemProps<T>,
-) => {
+export const ListItem = <T extends ElementType = "a">({
+  as,
+  label,
+  icon,
+  isActive = false,
+  iconOnly,
+  to,
+  isCollapsed,
+  onClick,
+  ...props
+}: ListItemProps<T>) => {
   const Component = as || "a"
 
   const isDisabled = (props as any).disabled || false

@@ -1,6 +1,11 @@
 import { cn } from "@/utils/cn"
 import type { MenuSide, MenuAlign } from "./ActionMenu.types"
 
+interface PanelStyleProps {
+  side?: MenuSide
+  align?: MenuAlign
+}
+
 export const getActionMenuStyles = ({
   side = "bottom",
   align = "start",
