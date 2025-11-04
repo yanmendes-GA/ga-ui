@@ -27,12 +27,29 @@ export default defineConfig({
       fileName: format => `ga-ui.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react-router-dom",
+        "@tiptap/extension-link",
+        "@tiptap/extension-placeholder",
+        "@tiptap/extension-underline",
+        "@tiptap/react",
+        "@tiptap/starter-kit"
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "react/jsx-runtime",
+          "react-router-dom": "ReactRouterDom",
+
+          "@tiptap/react": "TiptapReact",
+          "@tiptap/starter-kit": "TiptapStarterKit",
+          "@tiptap/extension-link": "TiptapExtensionLink",
+          "@tiptap/extension-placeholder": "TiptapExtensionPlaceholder",
+          "@tiptap/extension-underline": "TiptapExtensionUnderline"
         },
       },
     },

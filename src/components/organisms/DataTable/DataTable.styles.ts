@@ -79,7 +79,7 @@ export const getExpandedCellStyles = () => {
 // --- Estilos para o Footer ---
 
 export const getFooterStyles = () => {
-  return cn("bg-dark-500 border-t-2 border-dark-400")
+  return cn("bg-dark-500 border-t-2 border-dark-400 sticky bottom-0")
 }
 
 export const getFooterCellStyles = () => {

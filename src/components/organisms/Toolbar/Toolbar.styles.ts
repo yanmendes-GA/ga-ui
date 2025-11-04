@@ -7,5 +7,5 @@ export const getToolbarStyles = () => {
 }
 
 export const getToolbarRightSlotStyles = () => {
-  return cn("flex items-center gap-4")
+  return cn("flex flex-1 items-center gap-4")
 }
