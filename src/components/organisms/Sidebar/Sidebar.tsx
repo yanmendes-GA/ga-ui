@@ -42,7 +42,7 @@ export const Sidebar = ({
             {navItems.map(item => (
               <li key={item.href}>
                 <ListItem
-                  href={item.href}
+                  to={item.href}
                   icon={item.icon}
                   label={item.label}
                   isActive={item.href === activeLink}

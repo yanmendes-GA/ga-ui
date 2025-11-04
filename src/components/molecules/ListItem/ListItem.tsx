@@ -8,7 +8,6 @@ export const ListItem = <T extends ElementType = "a">({
   label,
   icon,
   isActive = false,
-  iconOnly,
   to,
   isCollapsed,
   onClick,
@@ -17,11 +16,23 @@ export const ListItem = <T extends ElementType = "a">({
   const Component = as || "a"
 
   const isDisabled = (props as any).disabled || false
-  const styles = getListItemStyles({ isActive, isDisabled, isCollapsed })
+  const styles = getListItemStyles({
+    isActive,
+    isDisabled,
+    isCollapsed,
+  })
+
+  const componentProps = {
+    ...props,
+    ...(Component === "a" && {
+      href: typeof to === "string" ? to : undefined,
+    }),
+    ...(Component !== "a" && { to: to }),
+  }
 
   return (
     <Component
-      href={to}
+      {...componentProps}
       className={styles.listItem}
       aria-current={isActive ? "page" : undefined}
       onClick={(e: React.MouseEvent) => {
@@ -34,10 +45,9 @@ export const ListItem = <T extends ElementType = "a">({
           ;(onClick as any)(e)
         }
       }}
-      {...props}
     >
       {icon && <Icon name={icon} />}
-      <span className={styles.label}>{label}</span>
+      {!isCollapsed && <span className={styles.label}>{label}</span>}
     </Component>
   )
 }

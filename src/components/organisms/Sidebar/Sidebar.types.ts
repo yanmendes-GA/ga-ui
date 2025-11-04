@@ -1,17 +1,13 @@
-import type { ReactNode } from "react"
+import type { ReactNode, ElementType } from "react"
+import type { AppRoute } from "../../molecules/ListItem"
 
-/**
- * Define a estrutura de um item de navegação individual.
- */
 export interface SidebarNavItem {
   label: string
   icon: string
-  href: string
+  to: AppRoute
+  isActive?: boolean
 }
 
-/**
- * Define a estrutura dos dados do perfil do usuário.
- */
 export interface SidebarProfile {
   name: string
   role: string
@@ -19,9 +15,6 @@ export interface SidebarProfile {
   avatarSrc?: string
 }
 
-/**
- * Define as props do componente Sidebar.
- */
 export interface SidebarProps {
   /** O logo a ser exibido quando o sidebar está expandido (ex: <img> ou componente) */
   logoFull: ReactNode
@@ -31,8 +24,11 @@ export interface SidebarProps {
   navItems: SidebarNavItem[]
   /** Um objeto contendo os dados do perfil do usuário */
   profile: SidebarProfile
-  /** A URL ativa no momento, para destacar o ListItem correspondente */
-  activeLink?: string
   /** Controla quando o sidebar é recolhível */
   collapsable?: boolean
+  /**
+   * O componente a ser usado para renderizar os itens de navegação.
+   * Ex: 'a' (padrão) ou 'Link' do react-router-dom.
+   */
+  navItemComponent?: ElementType
 }
