@@ -1,15 +1,11 @@
 import { cn } from "@/utils/cn"
 
 type ListItemStyleProps = {
-  isActive?: boolean
   isDisabled?: boolean
-  isCollapsed?: boolean
 }
 
 export const getListItemStyles = ({
-  isActive = false,
   isDisabled = false,
-  isCollapsed = false,
 }: ListItemStyleProps) => {
   return {
     listItem: cn(
@@ -17,11 +13,7 @@ export const getListItemStyles = ({
       "outline-none focus-visible:ring-2 focus-visible:ring-primary",
 
       isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-
-      isActive && "bg-dark-500 text-primary border border-primary font-bold",
-
-      isCollapsed && "w-[40px] px-[10px]",
     ),
-    label: cn("flex-1", { "sr-only": isCollapsed }),
+    label: cn("flex-1 text-left"),
   }
 }

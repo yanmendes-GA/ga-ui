@@ -1,11 +1,17 @@
-import type { ReactNode, ElementType } from "react"
-import type { AppRoute } from "../../molecules/ListItem"
+import type { ReactNode } from "react"
+// Importamos as props do NavItem para ter o tipo 'to' correto
+import type { NavItemProps } from "../../molecules/NavItem"
 
+/**
+ * Descreve a estrutura de dados para um item na navegação do Sidebar.
+ */
 export interface SidebarNavItem {
   label: string
   icon: string
-  to: AppRoute
-  isActive?: boolean
+  /** O destino da navegação (compatível com React Router) */
+  to: NavItemProps["to"]
+  /** Se o item deve estar desabilitado */
+  disabled?: boolean
 }
 
 export interface SidebarProfile {
@@ -26,9 +32,5 @@ export interface SidebarProps {
   profile: SidebarProfile
   /** Controla quando o sidebar é recolhível */
   collapsable?: boolean
-  /**
-   * O componente a ser usado para renderizar os itens de navegação.
-   * Ex: 'a' (padrão) ou 'Link' do react-router-dom.
-   */
-  navItemComponent?: ElementType
+  // A prop 'navItemComponent' foi removida pois agora usamos 'NavItem' diretamente.
 }

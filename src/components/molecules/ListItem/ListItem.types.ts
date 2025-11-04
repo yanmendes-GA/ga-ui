@@ -1,18 +1,7 @@
-import type { ComponentPropsWithoutRef, ElementType } from "react"
+import type { ButtonHTMLAttributes } from "react"
 
-export type AppRoute =
-  | string
-  | {
-      pathname?: string
-      search?: string
-      hash?: string
-    }
-
-export type ListItemProps<T extends ElementType = "a"> = {
-  as?: T
+export type ListItemProps = {
   label: string
   icon?: string
-  isCollapsed?: boolean
-  isActive?: boolean
-  to?: AppRoute
-} & Omit<ComponentPropsWithoutRef<T>, "children" | "to">
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "onClick">

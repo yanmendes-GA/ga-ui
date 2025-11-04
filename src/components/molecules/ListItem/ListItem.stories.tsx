@@ -1,45 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ListItem } from "./ListItem"
+import { fn } from "@storybook/test"
 
 const meta: Meta<typeof ListItem> = {
-  title: "Molecules/List Item",
+  title: "Molecules/ListItem",
   component: ListItem,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    as: {
-      control: { type: "select" },
-      options: ["a", "button"],
-    },
-    label: {
-      control: "text",
-    },
-    icon: {
-      control: "text",
-    },
-    isActive: {
-      control: "boolean",
-    },
-    disabled: {
-      control: "boolean",
-    },
-    to: {
-      control: "text",
-      if: { arg: "as", eq: "a" },
-    },
-    onClick: {
-      action: "clicked",
-    },
+    label: { control: "text" },
+    icon: { control: "text" },
+    disabled: { control: "boolean" },
   },
   args: {
-    as: "a",
-    label: "Dashboard",
-    icon: "chart-pie-alt",
-    isActive: false,
-    disabled: false,
-    to: "#",
+    onClick: fn(),
   },
 }
 
@@ -48,28 +24,23 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    isActive: false,
-  },
-}
-
-export const Active: Story = {
-  args: {
-    isActive: true,
+    label: "Clickable Item",
+    icon: "filters",
+    disabled: false,
   },
 }
 
 export const Disabled: Story = {
   args: {
-    isActive: false,
+    label: "Disabled Item",
+    icon: "filters",
     disabled: true,
   },
 }
 
-export const AsButton: Story = {
+export const NoIcon: Story = {
   args: {
-    as: "button",
-    label: "Click Me",
-    icon: "chart-pie-alt",
-    to: undefined,
+    label: "No Icon Item",
+    disabled: false,
   },
 }

@@ -1,6 +1,7 @@
 import { getSidebarStyles } from "./Sidebar.styles"
 import type { SidebarProps } from "./Sidebar.types"
-import { ListItem } from "../../molecules/ListItem"
+// Importamos o novo NavItem
+import { NavItem } from "../../molecules/NavItem"
 import { ProfileButton } from "../../molecules/ProfileButton"
 import { Button } from "../../atoms/Button"
 import { useSidebar } from "./useSidebar"
@@ -12,7 +13,6 @@ export const Sidebar = ({
   navItems,
   profile,
   collapsable = false,
-  navItemComponent,
 }: SidebarProps) => {
   const { isCollapsed, toggleCollapse } = useSidebar()
   const styles = getSidebarStyles({ isCollapsed })
@@ -39,16 +39,16 @@ export const Sidebar = ({
 
         <nav className={styles.navigation}>
           <ul className={styles.list}>
-            {navItems.map(item => (
+            {navItems.map((item) => (
               <li key={item.label}>
-                <ListItem
-                  as={navItemComponent}
+                <NavItem
                   to={item.to}
                   icon={item.icon}
-                  label={item.label}
-                  isActive={item.isActive}
+                  disabled={item.disabled}
                   isCollapsed={isCollapsed}
-                />
+                >
+                  {item.label}
+                </NavItem>
               </li>
             ))}
           </ul>
