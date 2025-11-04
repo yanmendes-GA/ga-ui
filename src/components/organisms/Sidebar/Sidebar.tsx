@@ -11,8 +11,8 @@ export const Sidebar = ({
   logoSmall,
   navItems,
   profile,
-  activeLink,
   collapsable = false,
+  navItemComponent,
 }: SidebarProps) => {
   const { isCollapsed, toggleCollapse } = useSidebar()
   const styles = getSidebarStyles({ isCollapsed })
@@ -40,12 +40,13 @@ export const Sidebar = ({
         <nav className={styles.navigation}>
           <ul className={styles.list}>
             {navItems.map(item => (
-              <li key={item.href}>
+              <li key={item.label}>
                 <ListItem
-                  to={item.href}
+                  as={navItemComponent}
+                  to={item.to}
                   icon={item.icon}
                   label={item.label}
-                  isActive={item.href === activeLink}
+                  isActive={item.isActive}
                   isCollapsed={isCollapsed}
                 />
               </li>
