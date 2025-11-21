@@ -5,12 +5,14 @@ import type { ListItemProps } from "./ListItem.types"
 export const ListItem = ({
   label,
   icon,
+  iconOnly,
   onClick,
   ...props
 }: ListItemProps) => {
   const isDisabled = props.disabled || false
   const styles = getListItemStyles({
     isDisabled,
+    iconOnly,
   })
 
   return (

@@ -23,13 +23,15 @@ export interface SidebarProfile {
 
 export interface SidebarProps {
   /** O logo a ser exibido quando o sidebar está expandido (ex: <img> ou componente) */
-  logoFull: ReactNode
+  logoFull?: string
   /** O logo a ser exibido quando o sidebar está recolhido (ex: ícone ou <img>) */
-  logoSmall: ReactNode
+  logoSmall?: string
   /** Um array de objetos de item de navegação */
-  navItems: SidebarNavItem[]
+  navItems:
+    | SidebarNavItem[]
+    | (({ isCollapsed }: { isCollapsed: boolean }) => ReactNode)
   /** Um objeto contendo os dados do perfil do usuário */
-  profile: SidebarProfile
+  profile?: SidebarProfile
   /** Controla quando o sidebar é recolhível */
   collapsable?: boolean
   // A prop 'navItemComponent' foi removida pois agora usamos 'NavItem' diretamente.

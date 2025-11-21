@@ -19,11 +19,13 @@ export const getSidebarStyles = ({ isCollapsed }: SidebarStyleProps) => {
       "justify-center": isCollapsed,
     }),
 
+    logo: cn("mb-10"),
+
     toggleButton: cn("absolute right-[-25px] top-[50px]", {
       "right-[-20px]": isCollapsed,
     }),
 
-    navigation: cn("flex flex-col gap-2 mt-10 overflow-hidden"),
+    navigation: cn("flex flex-col gap-2 overflow-hidden"),
 
     list: cn("flex flex-col gap-3 mt-3", { "items-center": isCollapsed }),
 
